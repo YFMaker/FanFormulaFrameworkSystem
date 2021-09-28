@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework", "FanFormulaFramework\FanFormulaFramework.csproj", "{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.DBServer", "FanFormulaFramework.DBServer\FanFormulaFramework.DBServer.csproj", "{D821F543-8B2D-49C8-84FD-0815FAE25D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.Public", "FanFormulaFramework.Public\FanFormulaFramework.Public.csproj", "{745BE9B9-44F1-4308-9BDC-3252807866C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

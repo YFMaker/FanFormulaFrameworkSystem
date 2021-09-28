@@ -15,6 +15,7 @@ namespace FanFormulaFramework
             ILoger<Program> loger = new ILoger<Program>();
             loger.Information("321321");
             loger.Error("2222");
+            DateTimeUtil.TOString();
             Console.ReadLine();
         }
     }

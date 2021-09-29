@@ -14,6 +14,19 @@ using System.Text;
 
 namespace FanFormulaFramework.Public
 {
+    /// <summary>
+    /// 系统根架构信息
+    /// 
+    /// 修改记录：
+    ///           1- 2021.9.29   衣凡   创建类。 
+    /// 
+    /// <CreatUser>
+    ///     衣凡
+    /// </CreatUser>
+    /// <CreatDateTime>
+    ///     2021-9-29 16:43:20
+    /// </CreatDateTime>
+    /// </summary>
     public static partial class BaseSystemInfo
     {
 
@@ -34,7 +47,7 @@ namespace FanFormulaFramework.Public
         /// <summary>
         /// 系统图标文件
         /// </summary>
-        public static string SystemAppIco = "Resources\\Form.ico";
+        public static readonly string SystemAppIco = "Resources\\Form.ico";
 
         /// <summary>
         /// 程序介绍

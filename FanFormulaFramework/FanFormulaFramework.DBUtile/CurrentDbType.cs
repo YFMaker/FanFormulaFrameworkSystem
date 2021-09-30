@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*===============================================================================================
+
+ Copyright© 2021 YiFan Ltd. All rights reserved.
+ 
+ Author   : CurrentDbType
+ CreatUser: YiFan
+ Created  : 2021-9-30 16:12:57
+ Summary  : 
+
+ ===============================================================================================*/
+using System;
 using System.Collections.Generic;
 using System.Text;
 

@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework", "FanFormulaFramework\FanFormulaFramework.csproj", "{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework", "FanFormulaFramework\FanFormulaFramework.csproj", "{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.DBServer", "FanFormulaFramework.DBServer\FanFormulaFramework.DBServer.csproj", "{D821F543-8B2D-49C8-84FD-0815FAE25D0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.DBServer", "FanFormulaFramework.DBServer\FanFormulaFramework.DBServer.csproj", "{D821F543-8B2D-49C8-84FD-0815FAE25D0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.Public", "FanFormulaFramework.Public\FanFormulaFramework.Public.csproj", "{745BE9B9-44F1-4308-9BDC-3252807866C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.Public", "FanFormulaFramework.Public\FanFormulaFramework.Public.csproj", "{745BE9B9-44F1-4308-9BDC-3252807866C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.DBUtile", "FanFormulaFramework.DBUtile\FanFormulaFramework.DBUtile.csproj", "{5F463C5E-1A92-4E9C-BB72-D34675021BE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.Util", "FanFormulaFramework.Util\FanFormulaFramework.Util.csproj", "{D0ED818A-5A49-477E-BF62-3FA94AE4F979}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F463C5E-1A92-4E9C-BB72-D34675021BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F463C5E-1A92-4E9C-BB72-D34675021BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F463C5E-1A92-4E9C-BB72-D34675021BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F463C5E-1A92-4E9C-BB72-D34675021BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0ED818A-5A49-477E-BF62-3FA94AE4F979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0ED818A-5A49-477E-BF62-3FA94AE4F979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0ED818A-5A49-477E-BF62-3FA94AE4F979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0ED818A-5A49-477E-BF62-3FA94AE4F979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

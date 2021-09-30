@@ -57,17 +57,22 @@ namespace FanFormulaFramework.Public
         /// <summary>
         /// 软件密码加权
         /// </summary>
-        public static string SystemPassWordID { get; set; }
+        public static readonly string SystemPassWordID = "this is a password";
 
         /// <summary>
         /// 软件加密加权
         /// </summary>
-        public static string SystemEncryptionID { get; set; }
+        public static readonly string SystemEncryptionID = "this is a encryption";
 
         /// <summary>
         /// 软件注册码
         /// </summary>
         public static string SystemRegistrationCode { get; set; }
+
+        /// <summary>
+        /// 公司名称
+        /// </summary>
+        public static string CompanyName = "运行于某公司";
 
         /// <summary>
         /// 是否保存行为操作记录
@@ -94,7 +99,10 @@ namespace FanFormulaFramework.Public
         /// </summary>
         public static string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
-
+        /// <summary>
+        /// UserConfig,FileConfiguration,RegistryConfig 用户配置，配置，注册表 读取参数
+        /// </summary>
+        public static ConfigurationCategory ConfigurationCategory = ConfigurationCategory.FileConfiguration;
 
         /// <summary>
         /// 用户锁

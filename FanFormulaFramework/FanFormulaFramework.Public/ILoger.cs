@@ -37,6 +37,7 @@ namespace FanFormulaFramework.Public
             logger = loggerFactory.CreateLogger<T>();
         }
 
+
         /// <summary>
         /// 消息打印
         /// </summary>
@@ -66,5 +67,55 @@ namespace FanFormulaFramework.Public
 
 
 
+    }
+
+    /// <summary>
+    /// 控制台打印类(无对应程序集，用于基类打印事件)
+    /// Console print class
+    /// </summary>
+    public class ILoger
+    {
+        public static ILogger logger;
+
+        public ILoger()
+        {
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    .AddFilter("System", LogLevel.Warning)
+                    .AddFilter("FanFormulaFramework", LogLevel.Debug)
+                    .AddConsole();
+                //.AddEventLog();
+            });
+            logger = loggerFactory.CreateLogger(this.GetType());
+        }
+
+        /// <summary>
+        /// 消息打印
+        /// </summary>
+        /// <param name="message"></param>
+        public void Information(string message)
+        {
+            logger.LogInformation(message);
+        }
+
+        /// <summary>
+        /// 错误打印
+        /// </summary>
+        /// <param name="message"></param>
+        public void Error(string message)
+        {
+            logger.LogError(message);
+        }
+
+        /// <summary>
+        /// 警告打印
+        /// </summary>
+        /// <param name="message"></param>
+        public void Warning(string message)
+        {
+            logger.LogWarning(message);
+        }
     }
 }

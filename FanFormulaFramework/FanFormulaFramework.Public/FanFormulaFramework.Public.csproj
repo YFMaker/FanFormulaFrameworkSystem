@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FanFormulaFramework.DBUtile\FanFormulaFramework.DBUtile.csproj" />
+    <ProjectReference Include="..\FanFormulaFramework.Util\FanFormulaFramework.Util.csproj" />
   </ItemGroup>
 
 </Project>

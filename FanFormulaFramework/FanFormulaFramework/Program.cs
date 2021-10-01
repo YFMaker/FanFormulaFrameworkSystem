@@ -9,6 +9,7 @@
 
  ===============================================================================================*/
 using FanFormulaFramework.Public;
+using FanFormulaFramework.Util;
 using System;
 
 namespace FanFormulaFramework
@@ -27,6 +28,8 @@ namespace FanFormulaFramework
             loger.Error("2222");
             Console.WriteLine(DateTime.Today);
             BaseSystemInfo.SystemVerion = "111";
+            ILoger loger1 = new ILoger();
+            loger1.Information("222");
             //DateTimeUtil.TOString();
             Console.ReadLine();
         }

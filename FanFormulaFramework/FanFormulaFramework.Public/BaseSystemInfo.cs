@@ -80,6 +80,9 @@ namespace FanFormulaFramework.Public
         /// </summary>
         public static bool SystemDataBaseIsWeighted = false;
 
+        /// <summary>
+        /// 数据库连接加密方式
+        /// </summary>
         public static EncryptionType SystemDataBaseIsWeightedType = EncryptionType.AES;
 
         /// <summary>

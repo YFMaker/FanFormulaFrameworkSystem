@@ -6,6 +6,9 @@ using System.Text;
 
 namespace FanFormulaFramework.Public
 {
+    /// <summary>
+    /// 数据库连接类
+    /// </summary>
     public static partial class BaseSystemInfo
     {
 

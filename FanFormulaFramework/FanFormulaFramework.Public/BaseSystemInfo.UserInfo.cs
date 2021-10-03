@@ -18,5 +18,9 @@ namespace FanFormulaFramework.Public
     public static partial class BaseSystemInfo
     {
 
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public static string UserName { get; set; }
     }
 }

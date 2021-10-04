@@ -71,11 +71,6 @@ namespace FanFormulaFramework.Public
         public static string SystemRegistrationCode { get; set; }
 
         /// <summary>
-        /// 公司名称
-        /// </summary>
-        public static string CompanyName = "运行于某公司";
-
-        /// <summary>
         /// 系统数据库连接是否加密
         /// </summary>
         public static bool SystemDataBaseIsWeighted = false;

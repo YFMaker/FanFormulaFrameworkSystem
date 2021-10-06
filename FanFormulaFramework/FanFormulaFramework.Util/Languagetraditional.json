@@ -1,0 +1,8 @@
+{
+  "WarningWordOne": "員工服務數據庫連接字符串非法！",
+  "WarningWordTwo": "客戶服務數據庫連接字符串非法！",
+  "WarningWordThree": "業務服務數據庫連接字符串非法！",
+  "WarningWordFour": "消息服務數據庫連接字符串非法！",
+  "WarningWordFive": "工作流服務數據庫連接字符串非法！",
+  "InformationWord": "叁貳壹"
+}

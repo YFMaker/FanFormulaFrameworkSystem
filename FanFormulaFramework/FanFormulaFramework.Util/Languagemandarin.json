@@ -1,0 +1,8 @@
+{
+  "WarningWordOne": "员工服务数据库连接字符串非法！",
+  "WarningWordTwo": "客户服务数据库连接字符串非法！",
+  "WarningWordThree": "业务服务数据库连接字符串非法！",
+  "WarningWordFour": "消息服务数据库连接字符串非法！",
+  "WarningWordFive": "工作流服务数据库连接字符串非法！",
+  "InformationWord": "三二一"
+}

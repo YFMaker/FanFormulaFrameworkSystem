@@ -1,0 +1,7 @@
+{
+  "DataString": "试试中文",
+  "ConnectionStrings": {
+    "DefaultConnection": "数据库1",
+    "DevConnection": "数据库2"
+  }
+}

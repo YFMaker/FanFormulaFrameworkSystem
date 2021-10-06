@@ -56,11 +56,15 @@ namespace FanFormulaFramework.Public
             {
                 if (string.IsNullOrEmpty(systemcode))
                 {
-                    ///TODO 配置处理
-                }
-                else
-                {
-                    systemcode = "Default";
+                    if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("SystemCode")))
+                    {
+                        systemcode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+                    }
+                    if (string.IsNullOrEmpty(systemcode))
+                    {
+                        systemcode = "Default";
+                    }
+
                 }
 
                 return systemcode;

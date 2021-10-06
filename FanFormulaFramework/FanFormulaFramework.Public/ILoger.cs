@@ -8,6 +8,7 @@
  Summary  : 
 
  ===============================================================================================*/
+using FanFormulaFramework.Util;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace FanFormulaFramework.Public
         /// <param name="message"></param>
         public void Information(string message)
         {
-            logger.LogInformation(message);
+            logger.LogInformation(MultiLanguage.NowLanguageString(message, BaseSystemInfo.CurrentLanguage));
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace FanFormulaFramework.Public
         /// <param name="message"></param>
         public void Error(string message)
         {
-            logger.LogError(message);
+            logger.LogError(MultiLanguage.NowLanguageString(message, BaseSystemInfo.CurrentLanguage));
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace FanFormulaFramework.Public
         /// <param name="message"></param>
         public void Warning(string message)
         {
-            logger.LogWarning(message);
+            logger.LogWarning(MultiLanguage.NowLanguageString(message, BaseSystemInfo.CurrentLanguage));
         }
 
 
@@ -97,7 +98,7 @@ namespace FanFormulaFramework.Public
         /// <param name="message"></param>
         public void Information(string message)
         {
-            logger.LogInformation(message);
+            logger.LogInformation(MultiLanguage.NowLanguageString(message, BaseSystemInfo.CurrentLanguage));
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace FanFormulaFramework.Public
         /// <param name="message"></param>
         public void Error(string message)
         {
-            logger.LogError(message);
+            logger.LogError(MultiLanguage.NowLanguageString(message, BaseSystemInfo.CurrentLanguage));
         }
 
         /// <summary>
@@ -115,7 +116,7 @@ namespace FanFormulaFramework.Public
         /// <param name="message"></param>
         public void Warning(string message)
         {
-            logger.LogWarning(message);
+            logger.LogWarning(MultiLanguage.NowLanguageString(message, BaseSystemInfo.CurrentLanguage));
         }
     }
 }

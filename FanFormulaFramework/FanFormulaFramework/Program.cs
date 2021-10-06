@@ -11,6 +11,7 @@
 using FanFormulaFramework.Public;
 using FanFormulaFramework.Util;
 using System;
+using System.Text;
 
 namespace FanFormulaFramework
 {
@@ -22,7 +23,10 @@ namespace FanFormulaFramework
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Console.WriteLine(Encoding.GetEncoding("GB2312"));
             Console.WriteLine("Hello World!");
+            Console.WriteLine("!");
             ILoger<Program> loger = new ILoger<Program>();
             loger.Information("321321");
             loger.Error("2222");
@@ -30,6 +34,10 @@ namespace FanFormulaFramework
             BaseSystemInfo.SystemVerion = "111";
             ILoger loger1 = new ILoger();
             loger1.Information("222");
+            //ConfigurationManagerd configurationManagerd = new ConfigurationManagerd("config.json");
+            string dd = ConfigurationManagerd.Appsetting<string>("DataString");
+            loger.Information(dd);
+            loger.Information(MultiLanguage.NowLanguageString("叁貳壹", "mandarin"));
             //DateTimeUtil.TOString();
             Console.ReadLine();
         }

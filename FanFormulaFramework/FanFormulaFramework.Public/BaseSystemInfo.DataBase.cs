@@ -126,7 +126,7 @@ namespace FanFormulaFramework.Public
                 }
                 else
                 {
-                    loger.Warning("客户服务数据库连接字符串非法！");
+                    loger.Warning("业务服务数据库连接字符串非法！");
                     return "";
                 }
             }
@@ -157,7 +157,7 @@ namespace FanFormulaFramework.Public
                 }
                 else
                 {
-                    loger.Warning("客户服务数据库连接字符串非法！");
+                    loger.Warning("消息服务数据库连接字符串非法！");
                     return "";
                 }
             }
@@ -188,7 +188,7 @@ namespace FanFormulaFramework.Public
                 }
                 else
                 {
-                    loger.Warning("客户服务数据库连接字符串非法！");
+                    loger.Warning("工作流服务数据库连接字符串非法！");
                     return "";
                 }
             }

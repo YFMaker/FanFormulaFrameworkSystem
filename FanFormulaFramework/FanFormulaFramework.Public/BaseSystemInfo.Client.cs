@@ -78,5 +78,25 @@ namespace FanFormulaFramework.Public
         /// 当前语言
         /// </summary>
         public static string CurrentLanguage = "zh-CN";
+
+        /// <summary>
+        /// 当前主题
+        /// </summary>
+        public static string Themes = string.Empty;
+
+        /// <summary>
+        /// 客户端本地缓存
+        /// </summary>
+        public static bool ClientCache = false;
+
+        /// <summary>
+        /// 即时通讯地址
+        /// </summary>
+        public static string MessageWebHostUrl = "webhosturl";
+
+        /// <summary>
+        /// 主程序命名空间
+        /// </summary>
+        public static string MainAssembly = "FanFormulaFramework";
     }
 }

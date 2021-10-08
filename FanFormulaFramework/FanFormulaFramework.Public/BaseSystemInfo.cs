@@ -93,17 +93,17 @@ namespace FanFormulaFramework.Public
         /// <summary>
         /// 时间格式
         /// </summary>
-        public static string TimeFormat = "HH:mm:ss";
+        public static readonly string TimeFormat = "HH:mm:ss";
 
         /// <summary>
         /// 日期短格式
         /// </summary>
-        public static string DateFormat = "yyyy-MM-dd";
+        public static readonly string DateFormat = "yyyy-MM-dd";
 
         /// <summary>
         /// 日期长格式
         /// </summary>
-        public static string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        public static readonly string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
         /// <summary>
         /// UserConfig,FileConfiguration,RegistryConfig 用户配置，配置，注册表 读取参数

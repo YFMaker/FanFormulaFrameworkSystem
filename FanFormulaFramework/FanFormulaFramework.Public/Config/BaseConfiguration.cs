@@ -16,7 +16,26 @@ namespace FanFormulaFramework.Public
 {
     public class BaseConfiguration
     {
+        static BaseConfiguration()
+        {
+            ConfigurationManagerd configurationManagerd = new ConfigurationManagerd("Appsetting.json");
+            BaseSystemInfo.ConfigurationCategory = (ConfigurationCategory)configurationManagerd.Appsetting<int>("ConfigurationCategory", 2);
+        }
 
+        public static void GetConfig()
+        {
+            switch (BaseSystemInfo.ConfigurationCategory)
+            {
+                case ConfigurationCategory.UserConfig:
+                    break;
+                case ConfigurationCategory.FileConfiguration:
+                    break;
+                case ConfigurationCategory.RegistryConfig:
+                    break;
+                default:
+                    break;
+            }
+        }
 
     }
 }

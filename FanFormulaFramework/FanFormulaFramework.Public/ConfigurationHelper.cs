@@ -1,4 +1,5 @@
-﻿using FanFormulaFramework.Util;
+﻿using FanFormulaFramework.DBUtile;
+using FanFormulaFramework.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,10 +32,43 @@ namespace FanFormulaFramework.Public
             {
                 BaseSystemInfo.HandleIsSave = true;
             }
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("ShowInformation")))
+            {
+                BaseSystemInfo.ShowInformation = ConfigurationManagerd.Appsetting<bool>("ShowInformation");
+            }
+            else
+            {
+                BaseSystemInfo.ShowInformation = true;
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("StaffServerDbType")))
+            {
+                BaseSystemInfo.StaffServerDbType = ConfigurationManagerd.Appsetting<CurrentDbType>("StaffServerDbType");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("CustomerServerDbType")))
+            {
+                BaseSystemInfo.CustomerServerDbType = ConfigurationManagerd.Appsetting<CurrentDbType>("CustomerServerDbType");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("BusinessServerDbType")))
+            {
+                BaseSystemInfo.BusinessServerDbType = ConfigurationManagerd.Appsetting<CurrentDbType>("BusinessServerDbType");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("MessageServerDbType")))
+            {
+                BaseSystemInfo.MessageServerDbType = ConfigurationManagerd.Appsetting<CurrentDbType>("MessageServerDbType");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("WorkServerDbType")))
+            {
+                BaseSystemInfo.WorkServerDbType = ConfigurationManagerd.Appsetting<CurrentDbType>("WorkServerDbType");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("DbConnetEncryptionstring")))
+            {
+                BaseSystemInfo.DbConnetEncryptionstring = ConfigurationManagerd.Appsetting<bool>("DbConnetEncryptionstring");
+            }
+            ///数据库连接字符串
+            BaseSystemInfo.CustomerServerDbConnetString = ConfigurationManagerd.Appsetting<string>("CustomerServerDbConnetString");
+            BaseSystemInfo.BusinessServerDbConnetString = ConfigurationManagerd.Appsetting<string>("BusinessServerDbConnetString");
+            BaseSystemInfo.MessageServerDbConnetString = ConfigurationManagerd.Appsetting<string>("MessageServerDbConnetString");
+            BaseSystemInfo.WorkServerDbConnetString = ConfigurationManagerd.Appsetting<string>("WorkServerDbConnetString");
             BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
             BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
             BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");

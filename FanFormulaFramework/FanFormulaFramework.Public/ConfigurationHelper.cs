@@ -69,13 +69,18 @@ namespace FanFormulaFramework.Public
             BaseSystemInfo.BusinessServerDbConnetString = ConfigurationManagerd.Appsetting<string>("BusinessServerDbConnetString");
             BaseSystemInfo.MessageServerDbConnetString = ConfigurationManagerd.Appsetting<string>("MessageServerDbConnetString");
             BaseSystemInfo.WorkServerDbConnetString = ConfigurationManagerd.Appsetting<string>("WorkServerDbConnetString");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
+
+            ///用户信息
+            BaseSystemInfo.PassWordErrorLockLimt = ConfigurationManagerd.Appsetting<int>("PassWordErrorLockLimt");
+            BaseSystemInfo.PassWordErrorLockCycle = ConfigurationManagerd.Appsetting<int>("PassWordErrorLockCycle");
+            BaseSystemInfo.MatchCaps = ConfigurationManagerd.Appsetting<bool>("MatchCaps");
+            BaseSystemInfo.CheckPassWordStrength = ConfigurationManagerd.Appsetting<bool>("CheckPassWordStrength");
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("ServerEncryptPassWord")))
+            {
+                BaseSystemInfo.ServerEncryptPassWord = ConfigurationManagerd.Appsetting<bool>("ServerEncryptPassWord");
+            }
+            BaseSystemInfo.PassWordMiniLength = ConfigurationManagerd.Appsetting<int>("PassWordMiniLength");
+            BaseSystemInfo.LetterInPassWord = ConfigurationManagerd.Appsetting < bool>("LetterInPassWord");
             BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
         }
     }

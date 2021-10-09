@@ -65,6 +65,8 @@ namespace FanFormulaFramework.Public
             }
         }
 
+
+
         /// <summary>
         /// 读取配置信息
         /// </summary>
@@ -85,5 +87,26 @@ namespace FanFormulaFramework.Public
             }
         }
 
+        /// <summary>
+        /// 读取配置信息
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="defaultvalue"></param>
+        /// <param name="tryd"></param>
+        /// <returns></returns>
+        public static T Appsetting<T>(string key,T defaultvalue,bool tryd=false)
+        {
+            try
+            {
+                return Configuration.GetValue<T>(key, defaultvalue);
+            }
+            catch (Exception ex)
+            {
+                ILoger loger = new ILoger();
+                loger.Warning(ex.Message);
+                return defaultvalue;
+            }
+        }
     }
 }

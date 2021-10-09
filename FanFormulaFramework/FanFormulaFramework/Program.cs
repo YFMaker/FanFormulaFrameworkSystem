@@ -35,8 +35,10 @@ namespace FanFormulaFramework
             ILoger loger1 = new ILoger();
             loger1.Information("222");
             //ConfigurationManagerd configurationManagerd = new ConfigurationManagerd("config.json");
-            string dd = ConfigurationManagerd.Appsetting<string>("DataString");
+            string dd = ConfigurationManagerd.Appsetting<string>("DataString", "5556w");
             loger.Information(dd);
+            ConfigurationManagerd configurationManagerd = new ConfigurationManagerd("appseeting.json");
+            loger.Information(ConfigurationManagerd.Appsetting<bool>("ddddd").ToString());
             loger.Information(MultiLanguage.NowLanguageString("叁貳壹", "mandarin"));
             //DateTimeUtil.TOString();
             Console.ReadLine();

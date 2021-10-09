@@ -19,6 +19,7 @@ namespace FanFormulaFramework.Public
         static BaseConfiguration()
         {
             ConfigurationManagerd configurationManagerd = new ConfigurationManagerd("Appsetting.json");
+            BaseSystemInfo.ConfigFile = configurationManagerd.Appsetting<string>("ConfigFile", "config.json");
             BaseSystemInfo.ConfigurationCategory = (ConfigurationCategory)configurationManagerd.Appsetting<int>("ConfigurationCategory", 2);
         }
 
@@ -27,8 +28,10 @@ namespace FanFormulaFramework.Public
             switch (BaseSystemInfo.ConfigurationCategory)
             {
                 case ConfigurationCategory.UserConfig:
+                    ConfigurationHelper.GetConfig();
                     break;
                 case ConfigurationCategory.FileConfiguration:
+                    ConfigurationHelper.GetConfig();
                     break;
                 case ConfigurationCategory.RegistryConfig:
                     break;

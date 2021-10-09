@@ -8,6 +8,11 @@ namespace FanFormulaFramework.Public
 {
     public  class ConfigurationHelper
     {
+        static ConfigurationHelper()
+        {
+            ConfigurationManagerd configurationManagerd = new ConfigurationManagerd(BaseSystemInfo.ConfigFile);
+        }
+
         public static void GetConfig()
         {
             BaseSystemInfo.SystemVerion = ConfigurationManagerd.Appsetting<string>("SystemVerion");
@@ -70,6 +75,10 @@ namespace FanFormulaFramework.Public
             BaseSystemInfo.MessageServerDbConnetString = ConfigurationManagerd.Appsetting<string>("MessageServerDbConnetString");
             BaseSystemInfo.WorkServerDbConnetString = ConfigurationManagerd.Appsetting<string>("WorkServerDbConnetString");
 
+            ///组织结构
+
+
+
             ///用户信息
             BaseSystemInfo.PassWordErrorLockLimt = ConfigurationManagerd.Appsetting<int>("PassWordErrorLockLimt");
             BaseSystemInfo.PassWordErrorLockCycle = ConfigurationManagerd.Appsetting<int>("PassWordErrorLockCycle");
@@ -81,7 +90,49 @@ namespace FanFormulaFramework.Public
             }
             BaseSystemInfo.PassWordMiniLength = ConfigurationManagerd.Appsetting<int>("PassWordMiniLength");
             BaseSystemInfo.LetterInPassWord = ConfigurationManagerd.Appsetting < bool>("LetterInPassWord");
-            BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("ChangePassWordTime")))
+            {
+                BaseSystemInfo.ChangePassWordTime = ConfigurationManagerd.Appsetting<int>("ChangePassWordTime");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("AccountNameMiniLength")))
+            {
+                BaseSystemInfo.AccountNameMiniLength = ConfigurationManagerd.Appsetting<int>("AccountNameMiniLength");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("PassWordEncryptionKey")))
+            {
+                BaseSystemInfo.PassWordEncryptionKey = ConfigurationManagerd.Appsetting<string>("PassWordEncryptionKey");
+            }
+
+            ///服务信息
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("Host")))
+            {
+                BaseSystemInfo.Host = ConfigurationManagerd.Appsetting<string>("Host");
+            }
+            if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("Port")))///默认8988
+            {
+                BaseSystemInfo.Port = ConfigurationManagerd.Appsetting<int>("Port");
+            }
+            BaseSystemInfo.NewUserRegister = ConfigurationManagerd.Appsetting<bool>("NewUserRegister");
+            BaseSystemInfo.UserOnLineLock = ConfigurationManagerd.Appsetting<bool>("UserOnLineLock");
+            BaseSystemInfo.NeedRegister = ConfigurationManagerd.Appsetting<bool>("NeedRegister",true);
+            BaseSystemInfo.ServerRegisterKey = ConfigurationManagerd.Appsetting<string>("ServerRegisterKey");
+            BaseSystemInfo.ServerCache = ConfigurationManagerd.Appsetting<bool>("ServerCache",false);
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+            BaseSystemInfo.OnLineTimeOut = ConfigurationManagerd.Appsetting<int>("OnLineTimeOut",5*60+40);
+            BaseSystemInfo.OnLineCheck = ConfigurationManagerd.Appsetting<int>("OnLineCheck",1*60);
+            BaseSystemInfo.LockNoWaitCount = ConfigurationManagerd.Appsetting<int>("LockNoWaitCount");
+            BaseSystemInfo.LockNoWaitTickTime = ConfigurationManagerd.Appsetting<int>("LockNoWaitTickTime");
+            BaseSystemInfo.UploadDirectory = ConfigurationManagerd.Appsetting<string>("UploadDirectory");
+            BaseSystemInfo.DefaultPassWord = ConfigurationManagerd.Appsetting<string>("DefaultPassWord");
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+            BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
+
+
         }
     }
 }

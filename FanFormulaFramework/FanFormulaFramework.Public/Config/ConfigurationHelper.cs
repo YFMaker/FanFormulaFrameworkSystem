@@ -15,6 +15,7 @@ namespace FanFormulaFramework.Public
 
         public static void GetConfig()
         {
+            #region 基础信息
             BaseSystemInfo.SystemVerion = ConfigurationManagerd.Appsetting<string>("SystemVerion");
             BaseSystemInfo.SystemCompany = ConfigurationManagerd.Appsetting<string>("SystemCompany");
             BaseSystemInfo.SystemName = ConfigurationManagerd.Appsetting<string>("SystemName");
@@ -74,12 +75,26 @@ namespace FanFormulaFramework.Public
             BaseSystemInfo.BusinessServerDbConnetString = ConfigurationManagerd.Appsetting<string>("BusinessServerDbConnetString");
             BaseSystemInfo.MessageServerDbConnetString = ConfigurationManagerd.Appsetting<string>("MessageServerDbConnetString");
             BaseSystemInfo.WorkServerDbConnetString = ConfigurationManagerd.Appsetting<string>("WorkServerDbConnetString");
-
-            ///组织结构
-
-
-
-            ///用户信息
+            #endregion
+            #region 组织结构
+            BaseSystemInfo.UseRoleOrganize = ConfigurationManagerd.Appsetting<bool>("UseRoleOrganize",false);
+            BaseSystemInfo.UsePermissionScope = ConfigurationManagerd.Appsetting<bool>("UsePermissionScope", true);
+            BaseSystemInfo.UseAuthorizationScope = ConfigurationManagerd.Appsetting<bool>("UseAuthorizationScope", false);
+            BaseSystemInfo.UseUserPermission = ConfigurationManagerd.Appsetting<bool>("UseUserPermission", true);
+            BaseSystemInfo.UseOrganizePermission = ConfigurationManagerd.Appsetting<bool>("UseOrganizePermission", false);
+            BaseSystemInfo.UseTableScopePermission = ConfigurationManagerd.Appsetting<bool>("UseTableScopePermission", false);
+            BaseSystemInfo.UseTableColumnPermission = ConfigurationManagerd.Appsetting<bool>("UseTableColumnPermission", false);
+            BaseSystemInfo.HandwrittenSignature = ConfigurationManagerd.Appsetting<bool>("HandwrittenSignature", false);
+            BaseSystemInfo.RecordLogOnLog = ConfigurationManagerd.Appsetting<bool>("RecordLogOnLog", true);
+            BaseSystemInfo.RecordLog = ConfigurationManagerd.Appsetting<bool>("RecordLog", true);
+            BaseSystemInfo.UpdateVisit = ConfigurationManagerd.Appsetting<bool>("UpdateVisit", true);
+            BaseSystemInfo.OnLineLimit = ConfigurationManagerd.Appsetting<int>("OnLineLimit", 0);
+            BaseSystemInfo.CheckIPAddress = ConfigurationManagerd.Appsetting<bool>("CheckIPAddress", false);
+            BaseSystemInfo.LogException = ConfigurationManagerd.Appsetting<bool>("LogException", true);
+            BaseSystemInfo.LogSQL = ConfigurationManagerd.Appsetting<bool>("LogSQL", true);
+            BaseSystemInfo.EventLog = ConfigurationManagerd.Appsetting<bool>("EventLog", false);
+            #endregion
+            #region 用户信息
             BaseSystemInfo.PassWordErrorLockLimt = ConfigurationManagerd.Appsetting<int>("PassWordErrorLockLimt");
             BaseSystemInfo.PassWordErrorLockCycle = ConfigurationManagerd.Appsetting<int>("PassWordErrorLockCycle");
             BaseSystemInfo.MatchCaps = ConfigurationManagerd.Appsetting<bool>("MatchCaps");
@@ -102,8 +117,8 @@ namespace FanFormulaFramework.Public
             {
                 BaseSystemInfo.PassWordEncryptionKey = ConfigurationManagerd.Appsetting<string>("PassWordEncryptionKey");
             }
-
-            ///服务信息
+            #endregion
+            #region 服务端信息
             if (!string.IsNullOrEmpty(ConfigurationManagerd.Appsetting<string>("Host")))
             {
                 BaseSystemInfo.Host = ConfigurationManagerd.Appsetting<string>("Host");
@@ -131,8 +146,26 @@ namespace FanFormulaFramework.Public
             BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
             BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
             BaseSystemInfo.SystemCode = ConfigurationManagerd.Appsetting<string>("SystemCode");
-
-
+            #endregion
+            #region 客户端信息
+            BaseSystemInfo.MainForm = ConfigurationManagerd.Appsetting<string>("MainForm", "FrmFanFormulaMain");
+            BaseSystemInfo.LogOnForm = ConfigurationManagerd.Appsetting<string>("LogOnForm", "FrmLogOn");
+            BaseSystemInfo.CookieExpires = ConfigurationManagerd.Appsetting<int>("CookieExpires", 30);
+            BaseSystemInfo.UseMessge = ConfigurationManagerd.Appsetting<bool>("UseMessge", true);
+            BaseSystemInfo.CurrentCompany = ConfigurationManagerd.Appsetting<string>("CurrentCompany");
+            BaseSystemInfo.CurrentUserName = ConfigurationManagerd.Appsetting<string>("CurrentUserName");
+            BaseSystemInfo.CurrentPassWord = ConfigurationManagerd.Appsetting<string>("CurrentPassWord");
+            BaseSystemInfo.RemendPassWord = ConfigurationManagerd.Appsetting<bool>("RemendPassWord", true);
+            BaseSystemInfo.AutoLogOn = ConfigurationManagerd.Appsetting<bool>("AutoLogOn", false);
+            BaseSystemInfo.ClientEncryptionPassWord = ConfigurationManagerd.Appsetting<bool>("ClientEncryptionPassWord", true);
+            BaseSystemInfo.OrganizeDynamicLoading = ConfigurationManagerd.Appsetting<bool>("OrganizeDynamicLoading", true);
+            BaseSystemInfo.Multilingual = ConfigurationManagerd.Appsetting<bool>("Multilingual", true);
+            BaseSystemInfo.CurrentLanguage = ConfigurationManagerd.Appsetting<string>("CurrentLanguage", "zh-CN");
+            BaseSystemInfo.Themes = ConfigurationManagerd.Appsetting<string>("Themes");
+            BaseSystemInfo.ClientCache = ConfigurationManagerd.Appsetting<bool>("ClientCache", false);
+            BaseSystemInfo.MessageWebHostUrl = ConfigurationManagerd.Appsetting<string>("MessageWebHostUrl");
+            BaseSystemInfo.MainAssembly = ConfigurationManagerd.Appsetting<string>("MainAssembly", "FanFormulaFramework");
+            #endregion
         }
     }
 }

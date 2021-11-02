@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework", "FanFormulaFramework\FanFormulaFramework.csproj", "{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.DBServer", "FanFormulaFramework.DBServer\FanFormulaFramework.DBServer.csproj", "{D821F543-8B2D-49C8-84FD-0815FAE25D0F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.Public", "FanFormulaFramework.Public\FanFormulaFramework.Public.csproj", "{745BE9B9-44F1-4308-9BDC-3252807866C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.DBUtile", "FanFormulaFramework.DBUtile\FanFormulaFramework.DBUtile.csproj", "{5F463C5E-1A92-4E9C-BB72-D34675021BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.DBUtile", "FanFormulaFramework.DBUtile\FanFormulaFramework.DBUtile.csproj", "{5F463C5E-1A92-4E9C-BB72-D34675021BE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.Util", "FanFormulaFramework.Util\FanFormulaFramework.Util.csproj", "{D0ED818A-5A49-477E-BF62-3FA94AE4F979}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.Util", "FanFormulaFramework.Util\FanFormulaFramework.Util.csproj", "{D0ED818A-5A49-477E-BF62-3FA94AE4F979}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.DBService", "FanFormulaFramework.DBService\FanFormulaFramework.DBService.csproj", "{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45494D11-EF5D-4FAB-9C2B-6C4FA5D50370}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D821F543-8B2D-49C8-84FD-0815FAE25D0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{745BE9B9-44F1-4308-9BDC-3252807866C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{D0ED818A-5A49-477E-BF62-3FA94AE4F979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0ED818A-5A49-477E-BF62-3FA94AE4F979}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0ED818A-5A49-477E-BF62-3FA94AE4F979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

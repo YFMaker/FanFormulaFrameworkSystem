@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace FanFormulaFramework.Public
@@ -36,9 +37,26 @@ namespace FanFormulaFramework.Public
         {
             //string _environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             string _path = contentPath;
+            string _basepath = System.IO.Directory.GetCurrentDirectory();
+            if (!File.Exists(_basepath + contentPath))
+            {
+                _basepath= AppContext.BaseDirectory;
+                if (!File.Exists(_basepath + contentPath))
+                {
+                    DirectoryInfo di = new DirectoryInfo(string.Format("{0}../../../", _basepath));//
+                    _basepath = di.FullName;
+                }
+                if (!File.Exists(_basepath + contentPath))
+                {
+                    ILoger loger = new ILoger();
+                    loger.Warning("没有找到配置文件");
+                    throw new Exception("没有找到配置文件");
+                }
+            }
+
 
             Configuration = new ConfigurationBuilder()
-                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                .SetBasePath(_basepath)
                .Add(new JsonConfigurationSource { Path = _path, Optional = false, ReloadOnChange = true })
                .Build();
         }

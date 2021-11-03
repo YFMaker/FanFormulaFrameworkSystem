@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FanFormulaFramework.Public;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace FanFormulaFramework.DBService.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Error"] = "123";
+            
+            ViewData["Error"] = "123111";
             return View();
         }
     }

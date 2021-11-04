@@ -25,16 +25,20 @@ namespace FanFormulaFramework.DBUtile
         /// </summary>
         MySql=2,
         /// <summary>
+        /// Oracle
+        /// </summary>
+        Oracle=3,
+        /// <summary>
         /// SQLite
         /// </summary>
-        Sqlite=3,
+        Sqlite=4,
         /// <summary>
         /// MongDb
         /// </summary>
-        MongDB=4,
+        MongDB=5,
         /// <summary>
         /// Access
         /// </summary>
-        Access=5
+        Access=6
     }
 }

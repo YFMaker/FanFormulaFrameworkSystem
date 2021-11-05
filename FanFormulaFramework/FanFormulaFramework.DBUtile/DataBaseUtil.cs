@@ -70,68 +70,6 @@ namespace FanFormulaFramework.DBUtile
         }
 
 
-        #region Mysql语句生成辅助
-
-        /// <summary>
-        /// Mysql实体转插入语句
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public static string ItemToInsterMySqlString<T>(T item)
-        {
-            StringBuilder sqlstringBuilder = new StringBuilder();
-            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            int i = 0;
-            sqlstringBuilder.AppendFormat("insert into {0} set", typeof(T).Name);
-            foreach (PropertyInfo prop in props)
-            {
-                Type t = GetCoreType(prop.PropertyType);
-                var vaule = props[i].GetValue(item, null);
-                if (t == typeof(string) || t == typeof(DateTime))
-                {
-                    sqlstringBuilder.AppendFormat(@" {0}='{1}',", prop.Name, vaule);
-                }
-                else
-                {
-                    sqlstringBuilder.AppendFormat(@" {0}={1},", prop.Name, vaule);
-                }
-                i++;
-            }
-            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
-        }
-
-        /// <summary>
-        /// Mysql实体转更改语句
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public static string ItemToUpdateMySqlString<T>(T item)
-        {
-            StringBuilder sqlstringBuilder = new StringBuilder();
-            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            int i = 0;
-            sqlstringBuilder.AppendFormat("UPDATE {0} set", typeof(T).Name);
-            foreach (PropertyInfo prop in props)
-            {
-                Type t = GetCoreType(prop.PropertyType);
-                var vaule = props[i].GetValue(item, null);
-                if (t == typeof(string) || t == typeof(DateTime))
-                {
-                    sqlstringBuilder.AppendFormat(@" {0}='{1}',", prop.Name, vaule);
-                }
-                else
-                {
-                    sqlstringBuilder.AppendFormat(@" {0}={1},", prop.Name, vaule);
-                }
-                i++;
-            }
-            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
-        }
-
-        #endregion
-
         #region SQLServer语句生成辅助
 
         /// <summary>
@@ -199,6 +137,97 @@ namespace FanFormulaFramework.DBUtile
             }
             return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
         }
+
+        #endregion
+
+        #region Mysql语句生成辅助
+
+        /// <summary>
+        /// Mysql实体转插入语句
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static string ItemToInsterMySqlString<T>(T item)
+        {
+            StringBuilder sqlstringBuilder = new StringBuilder();
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            int i = 0;
+            sqlstringBuilder.AppendFormat("insert into {0} set", typeof(T).Name);
+            foreach (PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                var vaule = props[i].GetValue(item, null);
+                if (t == typeof(string) || t == typeof(DateTime))
+                {
+                    sqlstringBuilder.AppendFormat(@" {0}='{1}',", prop.Name, vaule);
+                }
+                else
+                {
+                    sqlstringBuilder.AppendFormat(@" {0}={1},", prop.Name, vaule);
+                }
+                i++;
+            }
+            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
+        }
+
+        /// <summary>
+        /// Mysql实体转更改语句
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static string ItemToUpdateMySqlString<T>(T item)
+        {
+            StringBuilder sqlstringBuilder = new StringBuilder();
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            int i = 0;
+            sqlstringBuilder.AppendFormat("UPDATE {0} set", typeof(T).Name);
+            foreach (PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                var vaule = props[i].GetValue(item, null);
+                if (t == typeof(string) || t == typeof(DateTime))
+                {
+                    sqlstringBuilder.AppendFormat(@" {0}='{1}',", prop.Name, vaule);
+                }
+                else
+                {
+                    sqlstringBuilder.AppendFormat(@" {0}={1},", prop.Name, vaule);
+                }
+                i++;
+            }
+            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
+        }
+
+        #endregion
+
+        #region Oracle语句生成辅助
+
+        public static string ItemToInsterOracleString<T>(T item)
+        {
+            StringBuilder sqlstringBuilder = new StringBuilder();
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            int i = 0;
+            sqlstringBuilder.AppendFormat("insert into {0} set", typeof(T).Name);///TODO 安装oracle
+            foreach (PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                var vaule = props[i].GetValue(item, null);
+                if (t == typeof(string) || t == typeof(DateTime))
+                {
+                    sqlstringBuilder.AppendFormat(@" {0}='{1}',", prop.Name, vaule);
+                }
+                else
+                {
+                    sqlstringBuilder.AppendFormat(@" {0}={1},", prop.Name, vaule);
+                }
+                i++;
+            }
+            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
+        }
+
+
 
         #endregion
 

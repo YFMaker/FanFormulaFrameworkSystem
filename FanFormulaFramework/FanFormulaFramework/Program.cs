@@ -8,6 +8,7 @@
  Summary  : 
 
  ===============================================================================================*/
+using FanFormulaFramework.DBUtile;
 using FanFormulaFramework.Public;
 using FanFormulaFramework.Util;
 using System;

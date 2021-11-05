@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,6 @@ namespace FanFormulaFramework.DBUtile
 {
     public class DataBaseService : IDataBaseService
     {
-
         private readonly CurrentDbType DbType;
 
         /// <summary>
@@ -34,8 +34,10 @@ namespace FanFormulaFramework.DBUtile
                     sqlserverconnect = new SqlConnection(DbConnectString);
                     break;
                 case CurrentDbType.MySql:
+                    mysqlconnect = new MySqlConnection(DbConnectString);
                     break;
                 case CurrentDbType.Oracle:
+                    oracleconnect = new OracleConnection(DbConnectString);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -47,6 +49,60 @@ namespace FanFormulaFramework.DBUtile
                     break;
             }
         }
+
+        /// <summary>
+        /// 验证数据库连接正常
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <returns></returns>
+        public bool IsEnable(out string Message)
+        {
+            bool result = false;
+            try
+            {
+                switch (DbType)
+                {
+                    case CurrentDbType.MicrosoftSQLServer:
+                        sqlserverconnect.Open();
+                        if (sqlserverconnect.State == ConnectionState.Open)
+                        {
+                            result = true;
+                        }
+                        break;
+                    case CurrentDbType.MySql:
+                        mysqlconnect.Open();
+                        if (mysqlconnect.State == ConnectionState.Open)
+                        {
+                            result = true;
+                        }
+                        break;
+                    case CurrentDbType.Oracle:
+                        oracleconnect.Open();
+                        if (oracleconnect.State == ConnectionState.Open)
+                        {
+                            result = true;
+                        }
+                        break;
+                    case CurrentDbType.Sqlite:
+                        break;
+                    case CurrentDbType.MongDB:
+                        break;
+                    case CurrentDbType.Access:
+                        break;
+                    default:
+                        break;
+                }
+                Message = "数据库展开成功";
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+                result = false;
+            }
+
+            return result;
+        }
+
 
         #region ///增
 
@@ -450,7 +506,7 @@ namespace FanFormulaFramework.DBUtile
         /// <summary>
         /// SqlServer数据库
         /// </summary>
-        private SqlConnection sqlserverconnect;
+        private readonly SqlConnection sqlserverconnect;
 
         #region ///private SelectSqlServer(); 查询SqlServer数据库语句
         /// <summary>
@@ -903,7 +959,7 @@ namespace FanFormulaFramework.DBUtile
         {
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.AppendFormat("SELECT * FROM ({0}) as tmp {1}", sql, orderByQuery);
-            sqlBuilder.Append(sql);
+            //sqlBuilder.Append(sql);
             sqlBuilder.AppendFormat(" limit {0},{1} ", pageNum * maxpageNum, maxpageNum);
             DataTable result = SelectMysql(sqlBuilder.ToString());
             return result;
@@ -932,8 +988,8 @@ namespace FanFormulaFramework.DBUtile
             {
                 if (mysqlconnect.State != ConnectionState.Open)
                     mysqlconnect.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, mysqlconnect);
-                int result = cmd.ExecuteNonQuery();
+                MySqlCommand Mmd = new MySqlCommand(sql, mysqlconnect);
+                int result = Mmd.ExecuteNonQuery();
                 mysqlconnect.Close();
                 return result;
             }
@@ -1018,8 +1074,8 @@ namespace FanFormulaFramework.DBUtile
             {
                 if (mysqlconnect.State != ConnectionState.Open)
                     mysqlconnect.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, mysqlconnect);
-                int result = cmd.ExecuteNonQuery();
+                MySqlCommand Mmd = new MySqlCommand(sql, mysqlconnect);
+                int result = Mmd.ExecuteNonQuery();
                 mysqlconnect.Close();
                 return result;
             }
@@ -1129,8 +1185,8 @@ namespace FanFormulaFramework.DBUtile
             {
                 if (mysqlconnect.State != ConnectionState.Open)
                     mysqlconnect.Open();
-                MySqlCommand cmd = new MySqlCommand(sql, mysqlconnect);
-                int result = cmd.ExecuteNonQuery();
+                MySqlCommand Mmd = new MySqlCommand(sql, mysqlconnect);
+                int result = Mmd.ExecuteNonQuery();
                 mysqlconnect.Close();
                 return result;
             }
@@ -1221,5 +1277,143 @@ namespace FanFormulaFramework.DBUtile
 
         #endregion
 
+
+        #region Oracle数据库操作
+
+        /// <summary>
+        /// Oracle数据库
+        /// </summary>
+        private readonly OracleConnection oracleconnect;
+
+        #region ///private SelectOracle(); 查询Oracle数据库语句
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns></returns>
+        private DataTable SelectOracle()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// 根据sql语句查询返回DataTable
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private DataTable SelectOracle(string sql)
+        {
+            try
+            {
+                DataTable resultTable = new DataTable();
+                if (oracleconnect.State != ConnectionState.Open)
+                    oracleconnect.Open();
+                OracleDataAdapter sda = new OracleDataAdapter(sql, oracleconnect);
+                sda.Fill(resultTable);
+                oracleconnect.Close();
+                return resultTable;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 根据sql语句查询返回实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private T SelectOracle<T>(string sql)
+        {
+            T result = default(T);
+            DataTable selecttable = SelectOracle(sql);
+            if (selecttable.Rows.Count > 0)
+            {
+                result = DataBaseUtil.GetItem<T>(selecttable.Rows[0]);
+            }
+            else
+            {
+                result = default(T);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 根据sql分页查询，返回DataTable列表
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="orderByQuery">排序语句</param>
+        /// <param name="maxpageNum">每页最大数据</param>
+        /// <param name="pageNum">页数</param>
+        /// <returns></returns>
+        private DataTable SelectOracle(string sql, string orderByQuery, int maxpageNum = 10, int pageNum = 1)
+        {
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.AppendFormat("SELECT * FROM ({0} {1})", sql, orderByQuery);
+            sqlBuilder.AppendFormat(" where rownum between {0} and {1} ", ((pageNum-1) * maxpageNum)+1, (pageNum*maxpageNum));
+            DataTable result = SelectOracle(sqlBuilder.ToString());
+            return result;
+        }
+
+        #endregion
+
+
+        /// <summary>
+        /// 插入
+        /// </summary>
+        /// <returns></returns>
+        private int InsterOracle()
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据sql语句执行添加返回被影响行数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private int InsterOracle(string sql)
+        {
+            try
+            {
+                if (oracleconnect.State != ConnectionState.Open)
+                    oracleconnect.Open();
+                OracleCommand Omd = new OracleCommand(sql, oracleconnect);
+                int result = Omd.ExecuteNonQuery();
+                oracleconnect.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 根据实体执行添加返回是否成功
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="insterobject"></param>
+        /// <returns></returns>
+        private bool InsterOracle<T>(T insterobject)
+        {
+            string sql = DataBaseUtil.ItemToInsterOracleString<T>(insterobject);
+            int executerows = InsterOracle(sql);
+            if (executerows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        #endregion
     }
 }

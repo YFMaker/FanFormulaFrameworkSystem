@@ -204,29 +204,74 @@ namespace FanFormulaFramework.DBUtile
 
         #region Oracle语句生成辅助
 
+        /// <summary>
+        /// Oracle实体转插入语句
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public static string ItemToInsterOracleString<T>(T item)
         {
             StringBuilder sqlstringBuilder = new StringBuilder();
+            sqlstringBuilder.AppendFormat("insert into {0} ", typeof(T).Name);
             PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
             int i = 0;
-            sqlstringBuilder.AppendFormat("insert into {0} set", typeof(T).Name);///TODO 安装oracle
+            List<string> ItemKey = new List<string>();
+            List<oracleInster> ItemValue = new List<oracleInster>();
             foreach (PropertyInfo prop in props)
             {
                 Type t = GetCoreType(prop.PropertyType);
                 var vaule = props[i].GetValue(item, null);
-                if (t == typeof(string) || t == typeof(DateTime))
+                if (vaule != null)//未赋值字段不做处理
                 {
-                    sqlstringBuilder.AppendFormat(@" {0}='{1}',", prop.Name, vaule);
-                }
-                else
-                {
-                    sqlstringBuilder.AppendFormat(@" {0}={1},", prop.Name, vaule);
+                    ItemKey.Add(prop.Name);//记录类变量
+                    ItemValue.Add(new oracleInster() { TypeName=t,Value=vaule});//记录类变量值
                 }
                 i++;
             }
-            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
+            sqlstringBuilder.Append("(");
+            for (int listnum = 0; listnum < ItemKey.Count; listnum++)
+            {
+                sqlstringBuilder.AppendFormat("{0},",ItemKey[listnum]);
+            }
+            sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1);
+            sqlstringBuilder.Append(") values (");
+            for (int listnum = 0; listnum < ItemValue.Count; listnum++)
+            {
+                oracleInster Value = ItemValue[listnum];
+                if(Value.TypeName == typeof(string))
+                {
+                    sqlstringBuilder.AppendFormat(" '{0}',",Value.Value);
+                }
+                else if(Value.TypeName== typeof(DateTime))
+                {
+                    sqlstringBuilder.AppendFormat("DATE '{0}',", Value.Value);
+                }
+                else
+                {
+                    sqlstringBuilder.AppendFormat("{0},", Value.Value);
+                }
+            }
+            sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1);
+            sqlstringBuilder.Append(");");
+            return sqlstringBuilder.ToString();
         }
 
+        /// <summary>
+        /// oracle 语句处理时内容类
+        /// </summary>
+        class oracleInster
+        {
+            /// <summary>
+            /// 字段类型
+            /// </summary>
+            public Type TypeName { get; set; }
+
+            /// <summary>
+            /// 字段值
+            /// </summary>
+            public object Value { get; set; }
+        }
 
 
         #endregion

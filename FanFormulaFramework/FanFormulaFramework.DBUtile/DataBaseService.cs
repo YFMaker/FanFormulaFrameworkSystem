@@ -14,6 +14,8 @@ namespace FanFormulaFramework.DBUtile
 
         /// <summary>
         /// 默认构造函数
+        /// sql语句请注意：
+        /// 1.oracle语句结束一定加 ; 否则无法执行。
         /// </summary>
         public DataBaseService()
         {
@@ -1360,6 +1362,7 @@ namespace FanFormulaFramework.DBUtile
 
         #endregion
 
+        #region ///private InsterOracle(); 插入Oracle数据库语句
 
         /// <summary>
         /// 插入
@@ -1413,6 +1416,159 @@ namespace FanFormulaFramework.DBUtile
             }
         }
 
+        /// <summary>
+        /// 根据实体数组批量新建（返回成功数量）
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="insterobjectitem"></param>
+        /// <param name="insterNum"></param>
+        /// <returns></returns>
+        private bool InsterOracle<T>(List<T> insterobjectitem, out int insterNum)
+        {
+            int listallNum = insterobjectitem.Count;
+            insterNum = 0;
+            foreach (T item in insterobjectitem)
+            {
+                string sql = DataBaseUtil.ItemToInsterOracleString<T>(item);
+                int executerows = InsterOracle(sql);
+                if (executerows > 0)
+                {
+                    insterNum++;
+                }
+            }
+            if (listallNum == insterNum)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region ///private DeleteOracle(); 删除Oracle数据库语句
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <returns></returns>
+        private int DeleteOracle()
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据sql语句执行删除返回被影响行数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private int DeleteOracle(string sql)
+        {
+            try
+            {
+                if (oracleconnect.State != ConnectionState.Open)
+                    oracleconnect.Open();
+                OracleCommand Omd = new OracleCommand(sql, oracleconnect);
+                int result = Omd.ExecuteNonQuery();
+                oracleconnect.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 单条件删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyword">关键词</param>
+        /// <param name="Value">值</param>
+        /// <returns></returns>
+        private bool DeleteOracle<T>(string keyword, object Value)
+        {
+            string deletesqlstring =string.Format("DELETE FORM {0} WHERE {1}='{2}';", typeof(T).Name, keyword, Value);
+            int result = DeleteOracle(deletesqlstring);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 同条件多条同时删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyword">关键词</param>
+        /// <param name="Value">同关键词下内容数组</param>
+        /// <returns></returns>
+        private bool DeleteOracle<T>(string keyword, List<object> Value)
+        {
+            StringBuilder deletessqlstring = new StringBuilder();
+            deletessqlstring.AppendFormat("DELETE FROM {0} WHERE {1} in (", typeof(T).Name, keyword);
+            foreach (var item in Value)
+            {
+                deletessqlstring.AppendFormat("'{0}',", item);
+            }
+            deletessqlstring.Remove(deletessqlstring.Length - 1, 1);
+            deletessqlstring.Append(");");
+            int result = DeleteOracle(deletessqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 根据单条件字典删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keywordvalue">关键词，值</param>
+        /// <returns></returns>
+        private bool DeleteOracle<T>(Dictionary<string, object> keywordvalue)
+        {
+            StringBuilder deletessqlstring = new StringBuilder();
+            deletessqlstring.AppendFormat("DELETE FROM {0} WHERE", typeof(T).Name);
+            foreach (var item in keywordvalue.Keys)
+            {
+                deletessqlstring.AppendFormat(" {0}='{1}' AND", item, keywordvalue[item]);
+            }
+            deletessqlstring.Remove(deletessqlstring.Length - 4, 4);
+            deletessqlstring.Append(";");
+            int result = DeleteOracle(deletessqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+
+        /// <summary>
+        /// 更改
+        /// </summary>
+        /// <returns></returns>
+        private int UpdateOracle()
+        {
+            return 0;
+        }
 
         #endregion
     }

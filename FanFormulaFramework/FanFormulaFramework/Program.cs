@@ -12,6 +12,7 @@ using FanFormulaFramework.DBUtile;
 using FanFormulaFramework.Public;
 using FanFormulaFramework.Util;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace FanFormulaFramework
@@ -31,6 +32,7 @@ namespace FanFormulaFramework
             ILoger<Program> loger = new ILoger<Program>();
             loger.Information("321321");
             loger.Error("2222");
+            
             Console.WriteLine(DateTime.Today);
             BaseSystemInfo.SystemVerion = "111";
             ILoger loger1 = new ILoger();

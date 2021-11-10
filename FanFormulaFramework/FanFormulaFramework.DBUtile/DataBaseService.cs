@@ -1,9 +1,11 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Data.Sqlite;
+using MySql.Data.MySqlClient;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Text;
 
 namespace FanFormulaFramework.DBUtile
@@ -42,6 +44,7 @@ namespace FanFormulaFramework.DBUtile
                     oracleconnect = new OracleConnection(DbConnectString);
                     break;
                 case CurrentDbType.Sqlite:
+                    sqliteeconnect = new SQLiteConnection(DbConnectString);
                     break;
                 case CurrentDbType.MongDB:
                     break;
@@ -120,6 +123,7 @@ namespace FanFormulaFramework.DBUtile
                     result = InsterMysql(sql);
                     break;
                 case CurrentDbType.Oracle:
+                    result = InsterOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -147,6 +151,7 @@ namespace FanFormulaFramework.DBUtile
                     result = InsterMysql<T>(item);
                     break;
                 case CurrentDbType.Oracle:
+                    result = InsterOracle<T>(item);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -175,6 +180,7 @@ namespace FanFormulaFramework.DBUtile
                     result = InsterMysql<T>(insterobjectitem, out insterNum);
                     break;
                 case CurrentDbType.Oracle:
+                    result = InsterOracle<T>(insterobjectitem, out insterNum);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -207,6 +213,7 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteMysql(sql);
                     break;
                 case CurrentDbType.Oracle:
+                    result = DeleteOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -234,6 +241,7 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteMysql<T>(keyword, Value);
                     break;
                 case CurrentDbType.Oracle:
+                    result = DeleteOracle<T>(keyword, Value);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -261,6 +269,7 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteMysql<T>(keyword, Value);
                     break;
                 case CurrentDbType.Oracle:
+                    result = DeleteOracle<T>(keyword, Value);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -288,6 +297,7 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteMysql<T>(keywordvalue);
                     break;
                 case CurrentDbType.Oracle:
+                    result = DeleteOracle<T>(keywordvalue);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -319,6 +329,7 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateMysql(sql);
                     break;
                 case CurrentDbType.Oracle:
+                    result = UpdateOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -346,6 +357,7 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateMysql<T>(keyword, Value, editkeyword, editValue);
                     break;
                 case CurrentDbType.Oracle:
+                    result = UpdateOracle<T>(keyword, Value, editkeyword, editValue);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -373,6 +385,7 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateMysql<T>(newItem, keyword, Value);
                     break;
                 case CurrentDbType.Oracle:
+                    result = UpdateOracle<T>(newItem, keyword, Value);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -400,6 +413,7 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateMysql<T>(newItem, keywordValue);
                     break;
                 case CurrentDbType.Oracle:
+                    result = UpdateOracle<T>(newItem, keywordValue);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -431,6 +445,7 @@ namespace FanFormulaFramework.DBUtile
                     result = SelectMysql(sql);
                     break;
                 case CurrentDbType.Oracle:
+                    result = SelectOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -458,6 +473,7 @@ namespace FanFormulaFramework.DBUtile
                     result = SelectMysql<T>(sql);
                     break;
                 case CurrentDbType.Oracle:
+                    result = SelectOracle<T>(sql);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -485,6 +501,7 @@ namespace FanFormulaFramework.DBUtile
                     result = SelectMysql(sql, orderByQuery, maxpageNum, pageNum);
                     break;
                 case CurrentDbType.Oracle:
+                    result = SelectOracle(sql, orderByQuery, maxpageNum, pageNum);
                     break;
                 case CurrentDbType.Sqlite:
                     break;
@@ -1560,6 +1577,7 @@ namespace FanFormulaFramework.DBUtile
 
         #endregion
 
+        #region ///private UpdateOracle(); 更改Oracle数据库语句
 
         /// <summary>
         /// 更改
@@ -1569,6 +1587,196 @@ namespace FanFormulaFramework.DBUtile
         {
             return 0;
         }
+
+        /// <summary>
+        /// 根据sql语句执行更改返回被影响行数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private int UpdateOracle(string sql)
+        {
+            try
+            {
+                if (oracleconnect.State != ConnectionState.Open)
+                    oracleconnect.Open();
+                OracleCommand Omd = new OracleCommand(sql, oracleconnect);
+                int result = Omd.ExecuteNonQuery();
+                oracleconnect.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 根据单条件更改指定字段值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyword">修改条件关键字</param>
+        /// <param name="Value">修改条件值</param>
+        /// <param name="editkeyword">修改关键字</param>
+        /// <param name="editValue">修改值</param>
+        /// <returns></returns>
+        private bool UpdateOracle<T>(string keyword, object Value, string editkeyword, object editValue)
+        {
+            string updatesqlstring =
+                string.Format("UPDATE {0} SET {1}='{2}' WHERE {3}='{4}'", typeof(T).Name, editkeyword, editValue, keyword, Value);
+            int result = UpdateOracle(updatesqlstring);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 根据新实体单条件更改指定表数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="newItem">新实体</param>
+        /// <param name="keyword">修改条件关键字</param>
+        /// <param name="Value">修改条件值</param>
+        /// <returns></returns>
+        private bool UpdateOracle<T>(T newItem, string keyword, object Value)
+        {
+            StringBuilder updatesqlstring = new StringBuilder();
+            updatesqlstring.Append(DataBaseUtil.ItemToUpdateOracleString<T>(newItem));
+            updatesqlstring.AppendFormat(" WHERE {0}='{1}'", keyword, Value);
+            int result = UpdateOracle(updatesqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// 根据新实体多条件更改指定表数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="newItem">新实体</param>
+        /// <param name="keywordValue">修改条件关键词，修改条件值</param>
+        /// <returns></returns>
+        private bool UpdateOracle<T>(T newItem, Dictionary<string, object> keywordValue)
+        {
+            StringBuilder updatesqlstring = new StringBuilder();
+            updatesqlstring.Append(DataBaseUtil.ItemToUpdateOracleString<T>(newItem));
+            updatesqlstring.Append(" WHERE");
+            foreach (var item in keywordValue.Keys)
+            {
+                updatesqlstring.AppendFormat(" {0}='{1}' AND", item, keywordValue[item]);
+            }
+            updatesqlstring.Remove(updatesqlstring.Length - 4, 4);
+            int result = UpdateOracle(updatesqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+
+        #region Sqlite数据库操作
+
+        /// <summary>
+        /// Sqlite数据库
+        /// </summary>
+        private readonly SQLiteConnection sqliteeconnect;
+
+        #region ///private SelectSqlite(); 查询Sqlite数据库语句
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns></returns>
+        private DataTable SelectSqlite()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// 根据sql语句查询返回DataTable
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private DataTable SelectSqlite(string sql)
+        {
+            try
+            {
+                DataTable resultTable = new DataTable();
+                if (sqliteeconnect.State != ConnectionState.Open)
+                    sqliteeconnect.Open();
+                SQLiteDataAdapter sda = new SQLiteDataAdapter(sql, sqliteeconnect);
+                sda.Fill(resultTable);
+                sqliteeconnect.Close();
+                return resultTable;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 根据sql语句查询返回实体
+        /// </summary>
+        /// <typeparam name="T">实体</typeparam>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private T SelectSqlite<T>(string sql)
+        {
+            T result = default(T);
+            DataTable selecttable = SelectSqlite(sql);
+            if (selecttable.Rows.Count > 0)
+            {
+                result = DataBaseUtil.GetItem<T>(selecttable.Rows[0]);
+            }
+            else
+            {
+                result = default(T);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 根据sql语句分页查询，返回DataTable列表
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="orderByQuery">排序语句</param>
+        /// <param name="maxpageNum">每页最大数量</param>
+        /// <param name="pageNum">页数</param>
+        /// <returns></returns>
+        private DataTable SelectSqlite(string sql, string orderByQuery, int maxpageNum = 10, int pageNum = 0)
+        {
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.AppendFormat("SELECT * FROM ({0}) as tmp {1}", sql, orderByQuery);
+            sqlBuilder.Append(sql);
+            sqlBuilder.AppendFormat(" limit {0},{1} ", pageNum * maxpageNum, maxpageNum);
+            DataTable result = SelectSqlite(sqlBuilder.ToString());
+            return result;
+        }
+
+        #endregion
+
+
 
         #endregion
     }

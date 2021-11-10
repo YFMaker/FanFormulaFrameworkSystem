@@ -258,6 +258,39 @@ namespace FanFormulaFramework.DBUtile
         }
 
         /// <summary>
+        /// Oracle实体转更改语句
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static string ItemToUpdateOracleString<T>(T item)
+        {
+            StringBuilder sqlstringBuilder = new StringBuilder();
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            int i = 0;
+            sqlstringBuilder.AppendFormat("UPDATE {0} set", typeof(T).Name);
+            foreach (PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                var vaule = props[i].GetValue(item, null);
+                if (t == typeof(string))
+                {
+                    sqlstringBuilder.AppendFormat(" {0}='{1}',", prop.Name, vaule);
+                }
+                else if (t == typeof(DateTime))
+                {
+                    sqlstringBuilder.AppendFormat(" {0}=DATE '{1}',", prop.Name, vaule);
+                }
+                else
+                {
+                    sqlstringBuilder.AppendFormat(" {0}={1},", prop.Name, vaule);
+                }
+                i++;
+            }
+            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
+        }
+
+        /// <summary>
         /// oracle 语句处理时内容类
         /// </summary>
         class oracleInster

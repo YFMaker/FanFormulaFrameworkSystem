@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,9 @@ using System.Text;
 
 namespace FanFormulaFramework.DBUtile
 {
+    /// <summary>
+    /// DB操作实现类
+    /// </summary>
     public class DataBaseService : IDataBaseService
     {
         private readonly CurrentDbType DbType;
@@ -44,9 +46,9 @@ namespace FanFormulaFramework.DBUtile
                     oracleconnect = new OracleConnection(DbConnectString);
                     break;
                 case CurrentDbType.Sqlite:
-                    sqliteeconnect = new SQLiteConnection(DbConnectString);
+                    sqliteconnect = new SQLiteConnection(DbConnectString);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -89,8 +91,13 @@ namespace FanFormulaFramework.DBUtile
                         }
                         break;
                     case CurrentDbType.Sqlite:
+                        sqliteconnect.Open();
+                        if (sqliteconnect.State == ConnectionState.Open)
+                        {
+                            result = true;
+                        }
                         break;
-                    case CurrentDbType.MongDB:
+                    case CurrentDbType.MongoDB:
                         break;
                     case CurrentDbType.Access:
                         break;
@@ -126,8 +133,9 @@ namespace FanFormulaFramework.DBUtile
                     result = InsterOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = InsterSqlite(sql);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -154,8 +162,9 @@ namespace FanFormulaFramework.DBUtile
                     result = InsterOracle<T>(item);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = InsterSqlite<T>(item);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -183,8 +192,9 @@ namespace FanFormulaFramework.DBUtile
                     result = InsterOracle<T>(insterobjectitem, out insterNum);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = InsterSqlite<T>(insterobjectitem, out insterNum);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -216,8 +226,9 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = DeleteSqlite(sql);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -244,8 +255,9 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteOracle<T>(keyword, Value);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = DeleteSqlite<T>(keyword, Value);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -272,8 +284,9 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteOracle<T>(keyword, Value);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = DeleteSqlite<T>(keyword, Value);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -300,8 +313,9 @@ namespace FanFormulaFramework.DBUtile
                     result = DeleteOracle<T>(keywordvalue);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = DeleteSqlite<T>(keywordvalue);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -332,8 +346,9 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = UpdateSqlite(sql);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -360,8 +375,9 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateOracle<T>(keyword, Value, editkeyword, editValue);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = UpdateSqlite<T>(keyword, Value, editkeyword, editValue);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -388,8 +404,9 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateOracle<T>(newItem, keyword, Value);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = UpdateSqlite<T>(newItem, keyword, Value);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -416,8 +433,9 @@ namespace FanFormulaFramework.DBUtile
                     result = UpdateOracle<T>(newItem, keywordValue);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = UpdateSqlite<T>(newItem, keywordValue);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -448,8 +466,9 @@ namespace FanFormulaFramework.DBUtile
                     result = SelectOracle(sql);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = SelectSqlite(sql);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -476,8 +495,9 @@ namespace FanFormulaFramework.DBUtile
                     result = SelectOracle<T>(sql);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = SelectSqlite<T>(sql);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -504,8 +524,9 @@ namespace FanFormulaFramework.DBUtile
                     result = SelectOracle(sql, orderByQuery, maxpageNum, pageNum);
                     break;
                 case CurrentDbType.Sqlite:
+                    result = SelectSqlite(sql, orderByQuery, maxpageNum, pageNum);
                     break;
-                case CurrentDbType.MongDB:
+                case CurrentDbType.MongoDB:
                     break;
                 case CurrentDbType.Access:
                     break;
@@ -1698,7 +1719,7 @@ namespace FanFormulaFramework.DBUtile
         /// <summary>
         /// Sqlite数据库
         /// </summary>
-        private readonly SQLiteConnection sqliteeconnect;
+        private readonly SQLiteConnection sqliteconnect;
 
         #region ///private SelectSqlite(); 查询Sqlite数据库语句
 
@@ -1721,11 +1742,11 @@ namespace FanFormulaFramework.DBUtile
             try
             {
                 DataTable resultTable = new DataTable();
-                if (sqliteeconnect.State != ConnectionState.Open)
-                    sqliteeconnect.Open();
-                SQLiteDataAdapter sda = new SQLiteDataAdapter(sql, sqliteeconnect);
+                if (sqliteconnect.State != ConnectionState.Open)
+                    sqliteconnect.Open();
+                SQLiteDataAdapter sda = new SQLiteDataAdapter(sql, sqliteconnect);
                 sda.Fill(resultTable);
-                sqliteeconnect.Close();
+                sqliteconnect.Close();
                 return resultTable;
             }
             catch (Exception ex)
@@ -1776,7 +1797,323 @@ namespace FanFormulaFramework.DBUtile
 
         #endregion
 
+        #region ///private InsterSqlite(); 插入Sqlite数据库语句
 
+        /// <summary>
+        /// 插入
+        /// </summary>
+        /// <returns></returns>
+        private int InsterSqlite()
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据sql语句执行添加返回被影响行数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private int InsterSqlite(string sql)
+        {
+            try
+            {
+                if (sqliteconnect.State != ConnectionState.Open)
+                    sqliteconnect.Open();
+                SQLiteCommand cmd = new SQLiteCommand(sql, sqliteconnect);
+                int result = cmd.ExecuteNonQuery();
+                sqliteconnect.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 根据实体执行添加返回是否成功
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="insterobject"></param>
+        /// <returns></returns>
+        private bool InsterSqlite<T>(T insterobject)
+        {
+            string sql = DataBaseUtil.ItemToInsterSQLiteString<T>(insterobject);
+            int executerows = InsterSqlite(sql);
+            if (executerows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 根据实体数组批量新建（返回成功数量）
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="insterobjectitem"></param>
+        /// <param name="insterNum">插入成功数量</param>
+        /// <returns>是否全部新建成功</returns>
+        private bool InsterSqlite<T>(List<T> insterobjectitem, out int insterNum)
+        {
+            int listallNum = insterobjectitem.Count;
+            insterNum = 0;
+            foreach (T item in insterobjectitem)
+            {
+                string sql = DataBaseUtil.ItemToInsterSQLiteString<T>(item);
+                int executerows = InsterSqlite(sql);
+                if (executerows > 0)
+                {
+                    insterNum++;
+                }
+            }
+            if (listallNum == insterNum)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        #endregion
+
+        #region ///private DeleteSqlite(); 删除Sqlite数据库语句
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <returns></returns>
+        private int DeleteSqlite()
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据sql语句执行删除返回被影响行数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private int DeleteSqlite(string sql)
+        {
+            try
+            {
+                if (sqliteconnect.State != ConnectionState.Open)
+                    sqliteconnect.Open();
+                SQLiteCommand cmd = new SQLiteCommand(sql, sqliteconnect);
+                int result = cmd.ExecuteNonQuery();
+                sqliteconnect.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 单条件删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyword">关键词</param>
+        /// <param name="Value">值</param>
+        /// <returns></returns>
+        private bool DeleteSqlite<T>(string keyword, object Value)
+        {
+            string deletesqlstring =
+                string.Format("DELETE FORM {0} WHERE {1}='{2}'", typeof(T).Name, keyword, Value);
+            int result = DeleteSqlite(deletesqlstring);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 同条件多条同时删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyword">关键词</param>
+        /// <param name="Value">同关键词下内容数组</param>
+        /// <returns></returns>
+        private bool DeleteSqlite<T>(string keyword, List<object> Value)
+        {
+            StringBuilder deletessqlstring = new StringBuilder();
+            deletessqlstring.AppendFormat("DELETE FROM {0} WHERE {1} in (", typeof(T).Name, keyword);
+            foreach (var item in Value)
+            {
+                deletessqlstring.AppendFormat("'{0}',", item);
+            }
+            deletessqlstring.Remove(deletessqlstring.Length - 1, 1);
+            deletessqlstring.Append(")");
+            int result = DeleteSqlite(deletessqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 根据单条件字典删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keywordvalue">关键词，值</param>
+        /// <returns></returns>
+        private bool DeleteSqlite<T>(Dictionary<string, object> keywordvalue)
+        {
+            StringBuilder deletessqlstring = new StringBuilder();
+            deletessqlstring.AppendFormat("DELETE FROM {0} WHERE", typeof(T).Name);
+            foreach (var item in keywordvalue.Keys)
+            {
+                deletessqlstring.AppendFormat(" {0}='{1}' AND", item, keywordvalue[item]);
+            }
+            deletessqlstring.Remove(deletessqlstring.Length - 4, 4);
+            int result = DeleteSqlite(deletessqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region ///private UpdateSqlite(); 更改Sqlite数据库语句
+
+        /// <summary>
+        /// 更改
+        /// </summary>
+        /// <returns></returns>
+        private int UpdateSqlite()
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据sql语句执行更改返回被影响行数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        private int UpdateSqlite(string sql)
+        {
+            try
+            {
+                if (sqliteconnect.State != ConnectionState.Open)
+                    sqliteconnect.Open();
+                SQLiteCommand cmd = new SQLiteCommand(sql, sqliteconnect);
+                int result = cmd.ExecuteNonQuery();
+                sqliteconnect.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 根据单条件更改指定字段值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyword">修改条件关键字</param>
+        /// <param name="Value">修改条件值</param>
+        /// <param name="editkeyword">修改关键字</param>
+        /// <param name="editValue">修改值</param>
+        /// <returns></returns>
+        private bool UpdateSqlite<T>(string keyword, object Value, string editkeyword, object editValue)
+        {
+            string updatesqlstring =
+                string.Format("UPDATE {0} SET {1}='{2}' WHERE {3}='{4}'", typeof(T).Name, editkeyword, editValue, keyword, Value);
+            int result = UpdateSqlite(updatesqlstring);
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 根据新实体单条件更改指定表数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="newItem">新实体</param>
+        /// <param name="keyword">修改条件关键字</param>
+        /// <param name="Value">修改条件值</param>
+        /// <returns></returns>
+        private bool UpdateSqlite<T>(T newItem, string keyword, object Value)
+        {
+            StringBuilder updatesqlstring = new StringBuilder();
+            updatesqlstring.Append(DataBaseUtil.ItemToUpdateSQLiteString<T>(newItem));
+            updatesqlstring.AppendFormat(" WHERE {0}='{1}'", keyword, Value);
+            int result = UpdateSqlite(updatesqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 根据新实体多条件更改指定表数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="newItem">新实体</param>
+        /// <param name="keywordValue">修改条件关键词，修改条件值</param>
+        /// <returns></returns>
+        private bool UpdateSqlite<T>(T newItem, Dictionary<string, object> keywordValue)
+        {
+            StringBuilder updatesqlstring = new StringBuilder();
+            updatesqlstring.Append(DataBaseUtil.ItemToUpdateSQLiteString<T>(newItem));
+            updatesqlstring.Append(" WHERE");
+            foreach (var item in keywordValue.Keys)
+            {
+                updatesqlstring.AppendFormat(" {0}='{1}' AND", item, keywordValue[item]);
+            }
+            updatesqlstring.Remove(updatesqlstring.Length - 4, 4);
+            int result = UpdateSqlite(updatesqlstring.ToString());
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+
+        #region MongoDB
+
+        ///TODO 需求使用较少不做兼容执行
 
         #endregion
     }

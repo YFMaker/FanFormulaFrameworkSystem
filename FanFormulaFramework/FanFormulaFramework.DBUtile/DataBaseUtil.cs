@@ -309,6 +309,113 @@ namespace FanFormulaFramework.DBUtile
 
         #endregion
 
+        #region SQLite语句生成辅助
+
+        /// <summary>
+        /// SQLite实体转插入语句
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static string ItemToInsterSQLiteString<T>(T item)
+        {
+            StringBuilder sqlstringBuilder = new StringBuilder();
+            sqlstringBuilder.AppendFormat("insert into {0} ", typeof(T).Name);
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            int i = 0;
+            List<string> ItemKey = new List<string>();
+            List<sqliteInster> ItemValue = new List<sqliteInster>();
+            foreach (PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                var vaule = props[i].GetValue(item, null);
+                if (vaule != null)//未赋值字段不做处理
+                {
+                    ItemKey.Add(prop.Name);//记录类变量
+                    ItemValue.Add(new sqliteInster() { TypeName = t, Value = vaule });//记录类变量值
+                }
+                i++;
+            }
+            sqlstringBuilder.Append("(");
+            for (int listnum = 0; listnum < ItemKey.Count; listnum++)
+            {
+                sqlstringBuilder.AppendFormat("{0},", ItemKey[listnum]);
+            }
+            sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1);
+            sqlstringBuilder.Append(") values (");
+            for (int listnum = 0; listnum < ItemValue.Count; listnum++)
+            {
+                sqliteInster Value = ItemValue[listnum];
+                if (Value.TypeName == typeof(string))
+                {
+                    sqlstringBuilder.AppendFormat(" '{0}',", Value.Value);
+                }
+                else if (Value.TypeName == typeof(DateTime))
+                {
+                    sqlstringBuilder.AppendFormat(" datetime(‘{0}’),", Value.Value);
+                }
+                else
+                {
+                    sqlstringBuilder.AppendFormat("{0},", Value.Value);
+                }
+            }
+            sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1);
+            sqlstringBuilder.Append(");");
+            return sqlstringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Oracle实体转更改语句
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static string ItemToUpdateSQLiteString<T>(T item)
+        {
+            StringBuilder sqlstringBuilder = new StringBuilder();
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            int i = 0;
+            sqlstringBuilder.AppendFormat("UPDATE {0} set", typeof(T).Name);
+            foreach (PropertyInfo prop in props)
+            {
+                Type t = GetCoreType(prop.PropertyType);
+                var vaule = props[i].GetValue(item, null);
+                if (t == typeof(string))
+                {
+                    sqlstringBuilder.AppendFormat(" {0}='{1}',", prop.Name, vaule);
+                }
+                else if (t == typeof(DateTime))
+                {
+                    sqlstringBuilder.AppendFormat(" {0}= datetime(‘{1}’),", prop.Name, vaule);
+                }
+                else
+                {
+                    sqlstringBuilder.AppendFormat(" {0}={1},", prop.Name, vaule);
+                }
+                i++;
+            }
+            return sqlstringBuilder.Remove(sqlstringBuilder.Length - 1, 1).ToString();
+        }
+
+        /// <summary>
+        /// SQLite 语句处理时内容类
+        /// </summary>
+        class sqliteInster
+        {
+            /// <summary>
+            /// 字段类型
+            /// </summary>
+            public Type TypeName { get; set; }
+
+            /// <summary>
+            /// 字段值
+            /// </summary>
+            public object Value { get; set; }
+        }
+
+        #endregion
+
+
         /// <summary>
         /// 如果类型可空，则返回基础类型，否则返回类型
         /// </summary>

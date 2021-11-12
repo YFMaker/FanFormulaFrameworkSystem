@@ -35,7 +35,7 @@ namespace FanFormulaFramework.DBUtile
         /// <summary>
         /// MongDb
         /// </summary>
-        MongDB=5,
+        MongoDB=5,
         /// <summary>
         /// Access
         /// </summary>

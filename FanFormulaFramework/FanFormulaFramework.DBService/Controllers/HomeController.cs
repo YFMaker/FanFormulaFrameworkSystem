@@ -10,11 +10,14 @@ namespace FanFormulaFramework.DBService.Controllers
 {
     public class HomeController : Controller
     {
+        [ViewData]
+        public string Message { get; set; }
+
         public IActionResult Index()
         {
             string messagestring = string.Empty;
             DataBaseServiceStart(out messagestring);
-            ViewData["Error"] = "123111";
+            Message = "123111";
             return View();
         }
 

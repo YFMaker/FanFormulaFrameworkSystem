@@ -17,13 +17,19 @@ namespace FanFormulaFramework.DBService.Models
 
 
 
-
-
         /// <summary>
         /// 初始化
         /// </summary>
         public static void init()
         {
+
+
+            if (!string.IsNullOrEmpty(BaseSystemInfo.StaffServerDbConnetString))
+            {
+                DataBaseService StaffDataBase = new DataBaseService(BaseSystemInfo.StaffServerDbType, BaseSystemInfo.StaffServerDbConnetString);
+                DBServices.Add("Staff", StaffDataBase);
+            }
+
 
         }
     }

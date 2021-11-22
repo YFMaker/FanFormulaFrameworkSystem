@@ -3,5 +3,28 @@
   "Host": "127.0.0.1",
   "Port": 8081,
   //-----------------DBServerConfig--------//
-  "ServerRegisterKey": "我就试试test this is read OK!"
+  "ServerRegisterKey": "我就试试test this is read OK!",
+
+
+
+
+  //-------------数据库连接信息----------//
+  //-------员工数据库-----//
+  "StaffServerDbType": 1,
+  "StaffServerDbConnetString": "", //连接字符串
+  //-------客户数据库-----//
+  "CustomerServerDbType": 1,
+  "CustomerServerDbConnetString": "", //连接字符串
+  //-------业务数据库-----//
+  "BusinessServerDbType": 1,
+  "BusinessServerDbConnetString": "", //连接字符串
+  //-------消息数据库-----//
+  "MessageServerDbType": 1,
+  "MessageServerDbConnetString": "", //连接字符串
+  //-------工作流数据库-----//
+  "WorkServerDbType": 1,
+  "WorkServerDbConnetString": "" //连接字符串
+
+
+
 }

@@ -71,6 +71,7 @@ namespace FanFormulaFramework.Public
                 BaseSystemInfo.DbConnetEncryptionstring = ConfigurationManagerd.Appsetting<bool>("DbConnetEncryptionstring");
             }
             ///数据库连接字符串
+            BaseSystemInfo.StaffServerDbConnetString= ConfigurationManagerd.Appsetting<string>("StaffServerDbConnetString");
             BaseSystemInfo.CustomerServerDbConnetString = ConfigurationManagerd.Appsetting<string>("CustomerServerDbConnetString");
             BaseSystemInfo.BusinessServerDbConnetString = ConfigurationManagerd.Appsetting<string>("BusinessServerDbConnetString");
             BaseSystemInfo.MessageServerDbConnetString = ConfigurationManagerd.Appsetting<string>("MessageServerDbConnetString");

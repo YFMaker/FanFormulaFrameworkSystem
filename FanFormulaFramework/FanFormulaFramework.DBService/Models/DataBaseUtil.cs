@@ -12,25 +12,38 @@ namespace FanFormulaFramework.DBService.Models
         /// <summary>
         /// 数据库池
         /// </summary>
-        private static Dictionary<string, DataBaseService> DBServices = new Dictionary<string, DataBaseService>();
-
-
-
+        public static Dictionary<string, DataBaseService> DBServices = new Dictionary<string, DataBaseService>();
 
         /// <summary>
         /// 初始化
         /// </summary>
         public static void init()
         {
-
-
             if (!string.IsNullOrEmpty(BaseSystemInfo.StaffServerDbConnetString))
             {
                 DataBaseService StaffDataBase = new DataBaseService(BaseSystemInfo.StaffServerDbType, BaseSystemInfo.StaffServerDbConnetString);
                 DBServices.Add("Staff", StaffDataBase);
             }
-
-
+            if (!string.IsNullOrEmpty(BaseSystemInfo.CustomerServerDbConnetString))
+            {
+                DataBaseService CustomerDataBase = new DataBaseService(BaseSystemInfo.CustomerServerDbType, BaseSystemInfo.CustomerServerDbConnetString);
+                DBServices.Add("Customer", CustomerDataBase);
+            }
+            if (!string.IsNullOrEmpty(BaseSystemInfo.BusinessServerDbConnetString))
+            {
+                DataBaseService BusinessDataBase = new DataBaseService(BaseSystemInfo.BusinessServerDbType, BaseSystemInfo.BusinessServerDbConnetString);
+                DBServices.Add("Business", BusinessDataBase);
+            }
+            if (!string.IsNullOrEmpty(BaseSystemInfo.MessageServerDbConnetString))
+            {
+                DataBaseService MessageDataBase = new DataBaseService(BaseSystemInfo.MessageServerDbType, BaseSystemInfo.MessageServerDbConnetString);
+                DBServices.Add("Message", MessageDataBase);
+            }
+            if (!string.IsNullOrEmpty(BaseSystemInfo.WorkServerDbConnetString))
+            {
+                DataBaseService WorkDataBase = new DataBaseService(BaseSystemInfo.WorkServerDbType, BaseSystemInfo.WorkServerDbConnetString);
+                DBServices.Add("Work", WorkDataBase);
+            }
         }
     }
 }

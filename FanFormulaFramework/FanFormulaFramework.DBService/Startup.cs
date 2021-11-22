@@ -1,3 +1,4 @@
+using FanFormulaFramework.DBService.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,7 @@ namespace FanFormulaFramework.DBService
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            DataBaseUtil.init();
         }
 
         public IConfiguration Configuration { get; }

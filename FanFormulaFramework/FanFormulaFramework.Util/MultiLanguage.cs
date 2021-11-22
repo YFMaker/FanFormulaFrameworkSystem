@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace FanFormulaFramework.Util
@@ -28,8 +29,22 @@ namespace FanFormulaFramework.Util
         {
             string key = ScanLanguageConfig(value);
             string _path = $"Language{LanguageString(language)}.json";// $"config.json";
+            string _basepath = System.IO.Directory.GetCurrentDirectory();
+            if (!File.Exists(_basepath + _path))
+            {
+                _basepath = AppContext.BaseDirectory;
+                if (!File.Exists(_basepath + _path))
+                {
+                    DirectoryInfo di = new DirectoryInfo(string.Format("{0}../../../", _basepath));//
+                    _basepath = di.FullName;
+                }
+                if (!File.Exists(_basepath + _path))
+                {
+                    throw new Exception("没有找到配置文件");
+                }
+            }
             Configuration = new ConfigurationBuilder()
-                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                 .SetBasePath(_basepath)
                .Add(new JsonConfigurationSource { Path = _path, Optional = false, ReloadOnChange = true })
                .Build();
             if (string.IsNullOrEmpty(key))
@@ -84,8 +99,22 @@ namespace FanFormulaFramework.Util
             foreach (var item in languagelist)
             {
                 string _path = $"Language{item}.json";// $"config.json";
+                string _basepath = System.IO.Directory.GetCurrentDirectory();
+                if (!File.Exists(_basepath + _path))
+                {
+                    _basepath = AppContext.BaseDirectory;
+                    if (!File.Exists(_basepath + _path))
+                    {
+                        DirectoryInfo di = new DirectoryInfo(string.Format("{0}../../../", _basepath));//
+                        _basepath = di.FullName;
+                    }
+                    if (!File.Exists(_basepath + _path))
+                    {
+                        throw new Exception("没有找到配置文件");
+                    }
+                }
                 Configuration = new ConfigurationBuilder()
-                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                     .SetBasePath(_basepath)
                    .Add(new JsonConfigurationSource { Path = _path, Optional = false, ReloadOnChange = true })
                    .Build();
                 Dictionary<string, string> dic = new Dictionary<string, string>();

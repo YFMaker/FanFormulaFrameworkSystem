@@ -11,6 +11,12 @@
   //-------------数据库连接信息----------//
   //-------员工数据库-----//
   "StaffServerDbType": 1,
+  /*
+  SQL数据库连接字符串：
+  MYSQL数据库连接字符串：
+  Oracle数据库连接字符串：
+  SQLite数据库连接字符串：
+  */
   "StaffServerDbConnetString": "", //连接字符串
   //-------客户数据库-----//
   "CustomerServerDbType": 1,

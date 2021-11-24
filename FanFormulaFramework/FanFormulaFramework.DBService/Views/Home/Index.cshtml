@@ -3,4 +3,15 @@
 *@
 @{
 }
-<div>@ViewData["Message"]</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewData["TitleName"]</title>
+</head>
+<body>
+    <p>
+        @(new Microsoft.AspNetCore.Html.HtmlString(ViewData["Message"].ToString().Replace("\r\n", "<br />")))
+    </p>
+</body>
+</html>

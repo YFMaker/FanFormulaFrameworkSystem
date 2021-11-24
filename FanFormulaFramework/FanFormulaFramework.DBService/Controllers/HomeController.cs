@@ -1,5 +1,6 @@
 ﻿using FanFormulaFramework.DBService.Models;
 using FanFormulaFramework.Public;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -12,10 +13,14 @@ namespace FanFormulaFramework.DBService.Controllers
     public class HomeController : Controller
     {
         [ViewData]
+        public string TitleName { get; set; }
+
+        [ViewData]
         public string Message { get; set; }
 
         public IActionResult Index()
         {
+            TitleName = "启动检测";
             string messagestring = string.Empty;
             DataBaseServiceStart(out messagestring);
             Message = messagestring;
@@ -27,13 +32,13 @@ namespace FanFormulaFramework.DBService.Controllers
         {
             if (DataBaseUtil.DBServices.Count > 0)
             {
-                message = "验证连接池状态：/r/n";
+                message = "验证连接池状态：\r\n";
                 foreach (var item in DataBaseUtil.DBServices)
                 {
                     string DBtype = item.Key;
                     string messageforbool = string.Empty;
                     bool isStart = item.Value.IsEnable(out messageforbool);
-                    message += "数据库：" + DBtype +" 启动验证："+isStart+" 验证结论"+ messageforbool + "/r/n";
+                    message += "数据库：" + DBtype +" 启动验证："+isStart+" 验证结论"+ messageforbool + "\r\n";
                 }
             }
             else

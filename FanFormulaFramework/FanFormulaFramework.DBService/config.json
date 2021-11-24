@@ -12,15 +12,15 @@
   //-------员工数据库-----//
   "StaffServerDbType": 1,
   /*
-  SQL数据库连接字符串：
-  MYSQL数据库连接字符串：
-  Oracle数据库连接字符串：
-  SQLite数据库连接字符串：
+  SQL数据库连接字符串：Data Source=服务地址;Initial Catalog=库名;User Id=登录名;Password=密码;
+  MYSQL数据库连接字符串：Database='库名';Data Source='服务地址';User Id='登录名';Password='密码';charset='utf8';pooling=true;
+  Oracle数据库连接字符串：Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=远程服务器IP地址)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=远程服务器数据库服务名称)));Persist Security Info=True;User ID=数据库用户名;Password=数据库密码;
+  SQLite数据库连接字符串：Data Source=filename;Version=3;
   */
-  "StaffServerDbConnetString": "", //连接字符串
+  "StaffServerDbConnetString": "Data Source=192.168.1.80;Initial Catalog=DarianFramework;uid=sa;password=Admin@1234", //连接字符串
   //-------客户数据库-----//
-  "CustomerServerDbType": 1,
-  "CustomerServerDbConnetString": "", //连接字符串
+  "CustomerServerDbType": 2,
+  "CustomerServerDbConnetString": "Database='CoreDB';Data Source='192.168.0.35';User Id='root';Password='root';charset='utf8';pooling=true;", //连接字符串
   //-------业务数据库-----//
   "BusinessServerDbType": 1,
   "BusinessServerDbConnetString": "", //连接字符串

@@ -12,7 +12,7 @@ namespace FanFormulaFramework.DBService.Models
         /// <summary>
         /// 数据库池
         /// </summary>
-        public static Dictionary<string, DataBaseService> DBServices = new Dictionary<string, DataBaseService>();
+        public static Dictionary<RequestBusinessType, DataBaseService> DBServices = new Dictionary<RequestBusinessType, DataBaseService>();
 
         /// <summary>
         /// 初始化
@@ -22,27 +22,27 @@ namespace FanFormulaFramework.DBService.Models
             if (!string.IsNullOrEmpty(BaseSystemInfo.StaffServerDbConnetString))
             {
                 DataBaseService StaffDataBase = new DataBaseService(BaseSystemInfo.StaffServerDbType, BaseSystemInfo.StaffServerDbConnetString);
-                DBServices.Add("Staff", StaffDataBase);
+                DBServices.Add(RequestBusinessType.StaffServer, StaffDataBase);
             }
             if (!string.IsNullOrEmpty(BaseSystemInfo.CustomerServerDbConnetString))
             {
                 DataBaseService CustomerDataBase = new DataBaseService(BaseSystemInfo.CustomerServerDbType, BaseSystemInfo.CustomerServerDbConnetString);
-                DBServices.Add("Customer", CustomerDataBase);
+                DBServices.Add(RequestBusinessType.CustomerServer, CustomerDataBase);
             }
             if (!string.IsNullOrEmpty(BaseSystemInfo.BusinessServerDbConnetString))
             {
                 DataBaseService BusinessDataBase = new DataBaseService(BaseSystemInfo.BusinessServerDbType, BaseSystemInfo.BusinessServerDbConnetString);
-                DBServices.Add("Business", BusinessDataBase);
+                DBServices.Add(RequestBusinessType.BusinessServer, BusinessDataBase);
             }
             if (!string.IsNullOrEmpty(BaseSystemInfo.MessageServerDbConnetString))
             {
                 DataBaseService MessageDataBase = new DataBaseService(BaseSystemInfo.MessageServerDbType, BaseSystemInfo.MessageServerDbConnetString);
-                DBServices.Add("Message", MessageDataBase);
+                DBServices.Add(RequestBusinessType.MessageServer, MessageDataBase);
             }
             if (!string.IsNullOrEmpty(BaseSystemInfo.WorkServerDbConnetString))
             {
                 DataBaseService WorkDataBase = new DataBaseService(BaseSystemInfo.WorkServerDbType, BaseSystemInfo.WorkServerDbConnetString);
-                DBServices.Add("Work", WorkDataBase);
+                DBServices.Add(RequestBusinessType.WorkServer, WorkDataBase);
             }
         }
     }

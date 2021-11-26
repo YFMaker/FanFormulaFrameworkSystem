@@ -210,11 +210,27 @@ namespace FanFormulaFramework.DBService.Controllers
 
                     if (DataBaseUtil.DBServices.ContainsKey((RequestBusinessType)key))
                     {
-
+                        string message = string.Empty;
+                        bool isclose = DataBaseUtil.DBServices[(RequestBusinessType)key].IsClose(out message);
+                        if (isclose)
+                        {
+                            DataBaseUtil.DBServices.Remove((RequestBusinessType)key);
+                            result.code = 1;
+                            result.message = "成功";
+                            result.data = "已移除该业务数据";
+                        }
+                        else
+                        {
+                            result.code = 2;
+                            result.message = "失败";
+                            result.data = message;
+                        }
                     }
                     else
                     {
-
+                        result.code = 2;
+                        result.message = "失败";
+                        result.data = "该业务数据未启用";
                     }
                 }
                 else

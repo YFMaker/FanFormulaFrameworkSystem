@@ -75,6 +75,7 @@ namespace FanFormulaFramework.DBUtile
                         {
                             result = true;
                         }
+                        sqlserverconnect.Close();
                         break;
                     case CurrentDbType.MySql:
                         mysqlconnect.Open();
@@ -82,6 +83,7 @@ namespace FanFormulaFramework.DBUtile
                         {
                             result = true;
                         }
+                        mysqlconnect.Close();
                         break;
                     case CurrentDbType.Oracle:
                         oracleconnect.Open();
@@ -89,6 +91,7 @@ namespace FanFormulaFramework.DBUtile
                         {
                             result = true;
                         }
+                        oracleconnect.Close();
                         break;
                     case CurrentDbType.Sqlite:
                         sqliteconnect.Open();
@@ -96,6 +99,7 @@ namespace FanFormulaFramework.DBUtile
                         {
                             result = true;
                         }
+                        sqliteconnect.Close();
                         break;
                     case CurrentDbType.MongoDB:
                         break;
@@ -115,6 +119,63 @@ namespace FanFormulaFramework.DBUtile
             return result;
         }
 
+        /// <summary>
+        /// 关闭数据库连接
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <returns></returns>
+        public bool IsClose(out string Message)
+        {
+            bool result = false;
+            try
+            {
+                switch (DbType)
+                {
+                    case CurrentDbType.MicrosoftSQLServer:
+                        sqlserverconnect.Close();
+                        if (sqlserverconnect.State == ConnectionState.Closed)
+                        {
+                            result = true;
+                        }
+                        break;
+                    case CurrentDbType.MySql:
+                        mysqlconnect.Close();
+                        if (mysqlconnect.State == ConnectionState.Closed)
+                        {
+                            result = true;
+                        }
+                        break;
+                    case CurrentDbType.Oracle:
+                        oracleconnect.Close();
+                        if (oracleconnect.State == ConnectionState.Closed)
+                        {
+                            result = true;
+                        }
+                        break;
+                    case CurrentDbType.Sqlite:
+                        sqliteconnect.Close();
+                        if (sqliteconnect.State == ConnectionState.Closed)
+                        {
+                            result = true;
+                        }
+                        break;
+                    case CurrentDbType.MongoDB:
+                        break;
+                    case CurrentDbType.Access:
+                        break;
+                    default:
+                        break;
+                }
+                Message = "数据库关闭成功";
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+                result = false;
+            }
+
+            return result;
+        }
 
         #region ///增
 

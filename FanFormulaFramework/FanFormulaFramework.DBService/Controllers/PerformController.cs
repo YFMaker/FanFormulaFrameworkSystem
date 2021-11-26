@@ -1,4 +1,6 @@
-﻿using FanFormulaFramework.Public;
+﻿using FanFormulaFramework.DBService.Models;
+using FanFormulaFramework.Public;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,32 @@ namespace FanFormulaFramework.DBService.Controllers
         [HttpPost]
         public ActionResult<object> Insert()
         {
-            return Json("ddd");
+            Result result = new Result();
+            try
+            {
+                QueryCollection context = (QueryCollection)HttpContext.Request.Query;
+                int businessKey = Convert.ToInt32(context["businessKey"].ToString());
+                if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)businessKey) != null)
+                {
+
+                }
+                else
+                {
+                    result.code = 2;
+                    result.message = "失败";
+                    result.data = "未获取准确业务项目";
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                loger.Error(ex.Message);
+
+                result.code = 0;
+                result.message = "失败";
+                result.data = ex.Message;
+                return result;
+            }
         }
 
         /// <summary>

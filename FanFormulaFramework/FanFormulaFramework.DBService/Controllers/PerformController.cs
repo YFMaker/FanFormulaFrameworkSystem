@@ -1,4 +1,5 @@
 ﻿using FanFormulaFramework.DBService.Models;
+using FanFormulaFramework.DBUtile;
 using FanFormulaFramework.Public;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,11 @@ namespace FanFormulaFramework.DBService.Controllers
                 int businessKey = Convert.ToInt32(context["businessKey"].ToString());
                 if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)businessKey) != null)
                 {
+                    int sqltype = Convert.ToInt32(context["sqltype"].ToString());
+                    if (Enum.GetName(typeof(CurrentDbType), (CurrentDbType)sqltype) != null)
+                    {
 
+                    }
                 }
                 else
                 {

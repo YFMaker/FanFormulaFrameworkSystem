@@ -1,6 +1,8 @@
-﻿using FanFormulaFramework.DBService.Models;
+﻿using FanFormulaFramework.DBService.Authorized;
+using FanFormulaFramework.DBService.Models;
 using FanFormulaFramework.DBUtile;
 using FanFormulaFramework.Public;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +15,7 @@ namespace FanFormulaFramework.DBService.Controllers
 {
     [ApiController]
     [Route("db/[action]")]
+    [BasicAuth]
     public class PerformController : Controller
     {
         private static ILoger<PerformController> loger;

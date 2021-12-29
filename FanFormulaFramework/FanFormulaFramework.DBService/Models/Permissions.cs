@@ -9,7 +9,7 @@ namespace FanFormulaFramework.DBService.Models
     public static class Permissions
     {
         private static readonly ILoger loger;
-        public static readonly string SecurityCode;
+        public static string SecurityCode;
 
         static Permissions()
         {
@@ -23,7 +23,7 @@ namespace FanFormulaFramework.DBService.Models
         {
             ///make this start new code
             ///
-
+            SecurityCode = "ssssssssss";
 
 
             loger.Information("安全秘钥："+SecurityCode);

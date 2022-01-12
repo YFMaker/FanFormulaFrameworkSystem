@@ -3,13 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YFMakeEncryption;
 
 namespace FanFormulaFramework.DBService.Models
 {
     public static class Permissions
     {
         private static readonly ILoger loger;
-        public static string SecurityCode;
+        private static string SecurityCode;
+        private static string PrivateKey;
+        private static string Special = "wJTCoBPTmODZZ0t";
+        private static string Independent = "#";
+        private static string Checkcharacter = "^";
 
         static Permissions()
         {
@@ -22,11 +27,37 @@ namespace FanFormulaFramework.DBService.Models
         public static void Init()
         {
             ///make this start new code
-            ///
-            SecurityCode = "ssssssssss";
-
-
-            loger.Information("安全秘钥："+SecurityCode);
+            ///Absolute temporary key generation based on time, 
+            ///special encoding, independent character, check character, reference character
+            ///秘钥根据每次服务开启不同随机生成
+            SecurityCode = DateTime.Now.ToString("yyyyMMddHHmmss") + Special + Independent + Checkcharacter;
+            string oneMake = EncryptionInformation.MakeEncryption(SecurityCode);
+            string publickey = oneMake.Substring(0, 15);
+            PrivateKey = oneMake.Substring(15, oneMake.Length-15);
+            loger.Information("安全秘钥："+ publickey);
         }
+
+        /// <summary>
+        /// 核验
+        /// </summary>
+        /// <param name="publickey"></param>
+        /// <returns></returns>
+        public static bool IsReality(string publickey)
+        {
+            string oneMake = publickey + PrivateKey;
+            string reality = EncryptionInformation.ReadEncryption(oneMake);
+            if (reality == SecurityCode)
+            {
+                loger.Information("安全秘钥验证：通过");
+                return true;
+            }
+            else
+            {
+                loger.Information("安全秘钥验证：失败");
+                return false;
+            }
+        }
+
+
     }
 }

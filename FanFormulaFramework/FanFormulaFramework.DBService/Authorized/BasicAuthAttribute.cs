@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FanFormulaFramework.DBService.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,17 @@ namespace FanFormulaFramework.DBService.Authorized
             string authHeader = context.HttpContext.Request.Headers["Authorization"];
             if (!string.IsNullOrEmpty(authHeader))
             {
-               
-                    //context.Result = new UnauthorizedResult();
+
+                bool real= Permissions.IsReality(authHeader);
+                if (real)
+                {
                     return;
+                }
+                else
+                {
+                    context.Result = new UnauthorizedResult();
+                }
+                    //context.Result = new UnauthorizedResult();
             }
             else
             {

@@ -20,6 +20,7 @@ namespace FanFormulaFramework.DBService
         {
             Configuration = configuration;
             DataBaseUtil.init();
+            Permissions.Init();
         }
 
         public IConfiguration Configuration { get; }

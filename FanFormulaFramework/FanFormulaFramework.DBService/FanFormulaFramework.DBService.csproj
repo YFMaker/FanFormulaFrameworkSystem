@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FanFormulaFramework.DBUtile\FanFormulaFramework.DBUtile.csproj" />
     <ProjectReference Include="..\FanFormulaFramework.Public\FanFormulaFramework.Public.csproj" />
   </ItemGroup>

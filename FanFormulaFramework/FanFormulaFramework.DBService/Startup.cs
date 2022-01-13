@@ -28,7 +28,11 @@ namespace FanFormulaFramework.DBService
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(op => { //Newtonsoft.Json
+                op.SerializerSettings.DateFormatString = "yy-MM-dd HH:mm";
+                op.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

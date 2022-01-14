@@ -13,6 +13,11 @@ namespace FanFormulaFramework.DBService.Models
         /// 数据库池
         /// </summary>
         public static Dictionary<RequestBusinessType, DataBaseService> DBServices = new Dictionary<RequestBusinessType, DataBaseService>();
+        /// <summary>
+        /// 日志记录
+        /// </summary>
+        public static DataBaseService LogDataBase;
+
 
         /// <summary>
         /// 初始化
@@ -44,6 +49,7 @@ namespace FanFormulaFramework.DBService.Models
                 DataBaseService WorkDataBase = new DataBaseService(BaseSystemInfo.WorkServerDbType, BaseSystemInfo.WorkServerDbConnetString);
                 DBServices.Add(RequestBusinessType.WorkServer, WorkDataBase);
             }
+            LogDataBase = new DataBaseService(CurrentDbType.Sqlite, "Data Source=Log.db;Pooling=true;FailIfMissing=false");
         }
     }
 }

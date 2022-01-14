@@ -30,7 +30,7 @@ namespace FanFormulaFramework.DBService.Models
             ///Absolute temporary key generation based on time, 
             ///special encoding, independent character, check character, reference character
             ///秘钥根据每次服务开启不同随机生成
-            SecurityCode = DateTime.Now.ToString("yyyyMMddHHmmss") + Special + Independent + Checkcharacter;
+            SecurityCode = DateTime.Now.ToString("yyyyMMddHHmmss") + Special + Independent + Checkcharacter+BaseSystemInfo.ServerRegisterKey;
             string oneMake = EncryptionInformation.MakeEncryption(SecurityCode);
             string publickey = oneMake.Substring(0, 15);
             PrivateKey = oneMake.Substring(15, oneMake.Length-15);

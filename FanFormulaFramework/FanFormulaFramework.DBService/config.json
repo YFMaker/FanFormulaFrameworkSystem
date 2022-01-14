@@ -3,7 +3,8 @@
   "Host": "127.0.0.1",
   "Port": 8081,
   //-----------------DBServerConfig--------//
-  "ServerRegisterKey": "我就试试test this is read OK!",
+  /*基础加密信息*/
+  "ServerRegisterKey": "YFMake",
 
 
 

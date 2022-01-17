@@ -166,6 +166,7 @@ namespace FanFormulaFramework.Public
             BaseSystemInfo.ClientCache = ConfigurationManagerd.Appsetting<bool>("ClientCache", false);
             BaseSystemInfo.MessageWebHostUrl = ConfigurationManagerd.Appsetting<string>("MessageWebHostUrl");
             BaseSystemInfo.MainAssembly = ConfigurationManagerd.Appsetting<string>("MainAssembly", "FanFormulaFramework");
+            BaseSystemInfo.ServerUrl = ConfigurationManagerd.Appsetting<string>("ServerUrl");
             #endregion
         }
     }

@@ -28,6 +28,7 @@ namespace FanFormulaFramework.BusinessService
                     op.SerializerSettings.DateFormatString = "yy-MM-dd HH:mm";
                     op.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
                 });
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

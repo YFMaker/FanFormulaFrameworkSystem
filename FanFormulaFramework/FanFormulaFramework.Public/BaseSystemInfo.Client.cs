@@ -90,6 +90,11 @@ namespace FanFormulaFramework.Public
         public static bool ClientCache = false;
 
         /// <summary>
+        /// 服务端地址
+        /// </summary>
+        public static string ServerUrl { get; set; }
+
+        /// <summary>
         /// 即时通讯地址
         /// </summary>
         public static string MessageWebHostUrl = "webhosturl";

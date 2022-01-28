@@ -38,7 +38,8 @@ namespace FanFormulaFramework.DBService.Controllers
             Result result = new Result();
             try
             {
-                QueryCollection context = (QueryCollection)HttpContext.Request.Query;
+                IFormCollection context = HttpContext.Request.Form;
+                //QueryCollection context = (QueryCollection)HttpContext.Request.Query;
                 int businessKey = Convert.ToInt32(context["businessKey"].ToString());
                 if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)businessKey) != null)
                 {
@@ -97,7 +98,8 @@ namespace FanFormulaFramework.DBService.Controllers
             Result result = new Result();
             try
             {
-                QueryCollection context = (QueryCollection)HttpContext.Request.Query;
+                IFormCollection context = HttpContext.Request.Form;
+                //QueryCollection context = (QueryCollection)HttpContext.Request.Query;
                 int businessKey = Convert.ToInt32(context["businessKey"].ToString());
                 if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)businessKey) != null)
                 {
@@ -156,7 +158,8 @@ namespace FanFormulaFramework.DBService.Controllers
             Result result = new Result();
             try
             {
-                QueryCollection context = (QueryCollection)HttpContext.Request.Query;
+                IFormCollection context = HttpContext.Request.Form;
+                //QueryCollection context = (QueryCollection)HttpContext.Request.Query;
                 int businessKey = Convert.ToInt32(context["businessKey"].ToString());
                 if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)businessKey) != null)
                 {
@@ -215,7 +218,8 @@ namespace FanFormulaFramework.DBService.Controllers
             Result result = new Result();
             try
             {
-                QueryCollection context = (QueryCollection)HttpContext.Request.Query;
+                IFormCollection context = HttpContext.Request.Form;
+                //QueryCollection context = (QueryCollection)HttpContext.Request.Query;
                 int businessKey = Convert.ToInt32(context["businessKey"].ToString());
                 if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)businessKey) != null)
                 {

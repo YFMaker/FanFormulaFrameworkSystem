@@ -1,4 +1,5 @@
 ﻿using FanFormulaFramework.Public;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace FanFormulaFramework.BusinessService.Until
 {
+    /// <summary>
+    /// 请求类
+    /// </summary>
     public class PostUntil
     {
 
@@ -20,55 +24,57 @@ namespace FanFormulaFramework.BusinessService.Until
         }
 
         /// <summary>
-        /// 请求接口
+        /// 请求接口(定向专用)
         /// </summary>
         /// <returns></returns>
-        public static string PostPush()
+        public static string PostPush(string typename,int businesskey,string sqlstring)
         {
-
-            string url = BaseSystemInfo.ServerUrl + "db/Select";
-            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
-            keyValuePairs.Add("businessKey", "0");
-            keyValuePairs.Add("sqlstring", "select top 10 * from CUM_Customer ");
-            string resl = Post(url, keyValuePairs);
-            if (resl.Length > 0)
+            string url = BaseSystemInfo.ServerUrl + "db/" + typename;
+            string poststring = "businessKey=" + businesskey + "&sqlstring=" + sqlstring;
+            string result = string.Empty;
+            try
             {
-                return "22";
+                result = Post(url, poststring);
             }
-            return "11";
+            catch (Exception ex)
+            {
+                Loger.Warning(ex.Message);
+                return "404";
+                //throw;
+            }
+
+            return result;
         }
 
         /// <summary>
-        /// 指定Post地址使用Get 方式获取全部字符串
+        /// 反实例化
         /// </summary>
-        /// <param name="url">请求后台地址</param>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="json"></param>
         /// <returns></returns>
-        private static string Post(string url, Dictionary<string, string> dic)
+        public static T JsonToObject<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        private static string Post(string url,string poststring)
         {
             string result = "";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
-            //req.ContentType = "application/x-www-form-urlencoded";
+            req.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
             req.Headers.Add("Authorization", BaseSystemInfo.ServerRegisterKey);
-            #region 添加Post 参数
-            StringBuilder builder = new StringBuilder();
-            int i = 0;
-            foreach (var item in dic)
+            byte[] data = Encoding.UTF8.GetBytes(poststring);//把字符串转换为字节
+
+            req.ContentLength = data.Length; //请求长度
+
+            using (Stream reqStream = req.GetRequestStream()) //获取
             {
-                if (i > 0)
-                    builder.Append("&");
-                builder.AppendFormat("{0}={1}", item.Key, item.Value);
-                i++;
+                reqStream.Write(data, 0, data.Length);//向当前流中写入字节
+                reqStream.Close(); //关闭当前流
             }
-            byte[] data = Encoding.UTF8.GetBytes(builder.ToString());
-            req.ContentLength = data.Length;
-            using (Stream reqStream = req.GetRequestStream())
-            {
-                reqStream.Write(data, 0, data.Length);
-                reqStream.Close();
-            }
-            #endregion
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse(); //响应结果
             Stream stream = resp.GetResponseStream();
             //获取响应内容
             using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
@@ -77,9 +83,5 @@ namespace FanFormulaFramework.BusinessService.Until
             }
             return result;
         }
-
-
-
-
     }
 }

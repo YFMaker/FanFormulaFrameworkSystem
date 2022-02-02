@@ -1,4 +1,5 @@
-﻿@*
+﻿@using FanFormulaFramework.BusinessService.Models;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -10,11 +11,21 @@
     <title>@ViewData["TitleName"]</title>
 </head>
 <body>
-    <h1>进来看看。。。有啥看的？</h1>
     <div>
         @ViewData["Message"]
         @{
+            InterFaceStateList list = new InterFaceStateList();
+            if (ViewData["InterFaces"] != null)
+            {
+                list = (InterFaceStateList)ViewData["InterFaces"];
+            }
 
+            foreach (var item in list.interfaceStates)
+            {
+                <div>@item.InterFaceName</div>
+                <div>@item.InterFaceStated</div>
+                <div>@item.Remarke</div>
+            }
         }
 
 

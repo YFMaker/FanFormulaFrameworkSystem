@@ -11,6 +11,11 @@ namespace FanFormulaFramework.BusinessService.Models
     public class InterFaceStateList
     {
 
+        public InterFaceStateList()
+        {
+            interfaceStates = new List<InterfaceState>();
+        }
+
         /// <summary>
         /// 接口列表
         /// </summary>

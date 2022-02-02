@@ -4,8 +4,8 @@
   "Port": 8082,
   //-----------------DBServerConfig--------//
   /*DB服务加密信息(以每次DB服务开机安全秘钥为准)*/
-  "ServerRegisterKey": "mEuI2I8DihviPfI",
+  "ServerRegisterKey": "sjcsWfjPzmYqm69",
   /*DB服务地址带端口*/
-  "ServerUrl": "http://192.168.88.129:8081/"
+  "ServerUrl": "http://127.0.0.1:8081/"
 
 }

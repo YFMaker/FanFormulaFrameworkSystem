@@ -4,8 +4,8 @@
   "Port": 8082,
   //-----------------DBServerConfig--------//
   /*DB服务加密信息(以每次DB服务开机安全秘钥为准)*/
-  "ServerRegisterKey": "G5ke+aE9GMteyhz",
+  "ServerRegisterKey": "WowDB/rtyRlIuUB",
   /*DB服务地址带端口*/
-  "ServerUrl": "http://192.168.88.129:8081/"
+  "ServerUrl": "http://localhost:53033/"
 
 }

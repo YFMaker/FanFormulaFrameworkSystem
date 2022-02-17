@@ -226,19 +226,29 @@ namespace FanFormulaFramework.DBService.Controllers
                     string sql = context["sqlstring"].ToString();
                     LogBase.SQLLINQS = sql;
                     DataTable select = Models.DataBaseUtil.DBServices[(RequestBusinessType)businessKey].SelectSQL(sql);
-                    if (select.Rows.Count > 0)
+                    if (select == null)
                     {
-                        result.code = 1;
-                        result.message = "成功";
-                        LogBase.INSETERtIME = "成功";
-                        result.data = select;
+                        result.code = 0;
+                        result.message = "失败";
+                        LogBase.INSETERtIME = "失败";
+                        result.data = "查询失败，结果为空";
                     }
                     else
                     {
-                        result.code = 1;
-                        result.message = "成功";
-                        LogBase.INSETERtIME = "成功";
-                        result.data = "查询结果为空";
+                        if (select.Rows.Count > 0)
+                        {
+                            result.code = 1;
+                            result.message = "成功";
+                            LogBase.INSETERtIME = "成功";
+                            result.data = select;
+                        }
+                        else
+                        {
+                            result.code = 1;
+                            result.message = "成功";
+                            LogBase.INSETERtIME = "成功";
+                            result.data = "查询结果为空";
+                        }
                     }
                 }
                 else

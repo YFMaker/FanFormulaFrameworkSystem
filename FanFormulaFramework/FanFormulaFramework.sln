@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.Util", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.DBService", "FanFormulaFramework.DBService\FanFormulaFramework.DBService.csproj", "{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.BusinessService", "FanFormulaFramework.BusinessService\FanFormulaFramework.BusinessService.csproj", "{AE5030AB-3FA8-4219-804B-F6F84CF35DF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE5030AB-3FA8-4219-804B-F6F84CF35DF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE5030AB-3FA8-4219-804B-F6F84CF35DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE5030AB-3FA8-4219-804B-F6F84CF35DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE5030AB-3FA8-4219-804B-F6F84CF35DF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

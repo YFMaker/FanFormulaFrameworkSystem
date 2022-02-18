@@ -55,6 +55,21 @@ namespace FanFormulaFramework.BusinessService.Controllers
             return View();
         }
 
+        public IActionResult EditInterFace(InterfaceState interfaceState)
+        {
+            int businesskey = interfaceState.Businesskey;
+            string statetype = interfaceState.InterFaceStated == true ? "CloseDB" : "StartDB";
+            
+
+            TitleName = "接口状态";
+            TitleOther = "各接口信息为实时验证结果。";
+            SelectIntaceFaceState();
+            Message = "接口检测结果";
+            return View();
+        }
+
+
+
         public IActionResult Privacy()
         {
             return View();
@@ -76,6 +91,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
             {
                 InterfaceState interfacestate = new InterfaceState();
                 string postState = PostUntil.PostPush("select", typecode, "select 1");
+                interfacestate.Businesskey = typecode;
                 PostResultModel postmodel = PostUntil.JsonToObject<PostResultModel>(postState);
                 if (postmodel.code == 1)
                 {
@@ -92,6 +108,26 @@ namespace FanFormulaFramework.BusinessService.Controllers
                 InterFaces.interfaceStates.Add(interfacestate);
             }
 
+        }
+
+        /// <summary>
+        /// 调整接口状态
+        /// </summary>
+        /// <param name="businesskey"></param>
+        /// <param name="statetype"></param>
+        /// <returns></returns>
+        public bool SetIntaceFaceState(int businesskey, string statetype)
+        {
+            string getState = PostUntil.GetPush(businesskey, statetype);
+            PostResultModel getmodel = PostUntil.JsonToObject<PostResultModel>(getState);
+            if (getmodel.code == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

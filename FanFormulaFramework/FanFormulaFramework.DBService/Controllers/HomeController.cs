@@ -1,4 +1,5 @@
-﻿using FanFormulaFramework.DBService.Models;
+﻿using FanFormulaFramework.DBService.Authorized;
+using FanFormulaFramework.DBService.Models;
 using FanFormulaFramework.Public;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
@@ -58,11 +59,50 @@ namespace FanFormulaFramework.DBService.Controllers
         }
 
         /// <summary>
+        /// 查询数据库状态
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("db/[action]")]
+        [BasicAuth]
+        public ActionResult<object> SelectState()
+        {
+            Result result = new Result();
+            try
+            {
+                QueryCollection context = (QueryCollection)HttpContext.Request.Query;
+                int key = Convert.ToInt32(context["key"].ToString());
+                if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)key) != null)
+                {
+                    ///TODO 未确定
+                    
+                }
+                else
+                {
+                    result.code = 2;
+                    result.message = "失败";
+                    result.data = "未获取到准确参数";
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                loger.Error(ex.Message);
+
+                result.code = 0;
+                result.message = "失败";
+                result.data = ex.Message;
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 启动某个DB服务
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("db/[action]")]
+        [BasicAuth]
         public ActionResult<object> StartDB()
         {
             Result result = new Result();
@@ -198,6 +238,7 @@ namespace FanFormulaFramework.DBService.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("db/[action]")]
+        [BasicAuth]
         public ActionResult<object> CloseDB()
         {
             Result result = new Result();

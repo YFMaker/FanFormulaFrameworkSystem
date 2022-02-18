@@ -89,7 +89,6 @@
                                                                 <td>@(item.InterFaceStated==true?"运行中":"未运行")</td>
                                                                 <form asp-controller="Home" asp-action="EditInterFace" method="get">
                                                                 <td>
-                                                                    <input asp-for="Businesskey" type="text" value=@item.Businesskey hidden="hidden" />
                                                                     <input asp-for="InterFaceName" type="text" value=@item.InterFaceName hidden="hidden" />
                                                                     <input asp-for="InterFaceStated" type="text" value=@item.InterFaceStated hidden="hidden" />
                                                                     <button type="submit" class="btn btn-primary">@(item.InterFaceStated == true ? "关闭" : "打开")</button>

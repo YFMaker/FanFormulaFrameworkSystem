@@ -10,6 +10,10 @@ namespace FanFormulaFramework.BusinessService.Models
     /// </summary>
     public class InterfaceState
     {
+        /// <summary>
+        /// 接口编号
+        /// </summary>
+        public int Businesskey { get; set; }
 
         /// <summary>
         /// 接口名称

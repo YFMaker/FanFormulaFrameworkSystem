@@ -11,4 +11,17 @@ DB服务前提： 完善
 					系统框架基础类库 
 									主体系统类（完成）
 
+部署时  ：
+
+vim /etc/sysctl.conf
+插入
+fs.inotify.max_user_instances = 524288
+执行
+echo 524288 > /proc/sys/fs/inotify/max_user_instances
+检查
+ cd /proc/sys/fs/inotify/
+  vim max_user_instances 
+  524288
+
+
 业务服务前提：完善

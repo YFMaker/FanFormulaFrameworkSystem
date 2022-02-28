@@ -21,7 +21,7 @@
   "StaffServerDbConnetString": "", //连接字符串
   //-------客户数据库-----//
   "CustomerServerDbType": 2,
-  "CustomerServerDbConnetString": "Database='CoreDB';Data Source='192.168.14.129';User Id='root';Password='Y950509f!';charset='utf8';pooling=true;", //连接字符串
+  "CustomerServerDbConnetString": "Database='Core';Data Source='192.168.88.132';User Id='root';Password='1234';charset='utf8';pooling=true;", //连接字符串
   //-------业务数据库-----//
   "BusinessServerDbType": 1,
   "BusinessServerDbConnetString": "", //连接字符串

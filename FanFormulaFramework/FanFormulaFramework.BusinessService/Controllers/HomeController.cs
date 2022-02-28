@@ -59,12 +59,13 @@ namespace FanFormulaFramework.BusinessService.Controllers
         {
             int businesskey = interfaceState.Businesskey;
             string statetype = interfaceState.InterFaceStated == true ? "CloseDB" : "StartDB";
-            
+            string message = "";
+            bool result=SetIntaceFaceState(businesskey,statetype,out message);
 
             TitleName = "接口状态";
             TitleOther = "各接口信息为实时验证结果。";
             SelectIntaceFaceState();
-            Message = "接口检测结果";
+            Message = result==true?"":message;
             return View();
         }
 
@@ -90,7 +91,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
             for (int typecode = 0; typecode < 5; typecode++)
             {
                 InterfaceState interfacestate = new InterfaceState();
-                string postState = PostUntil.PostPush("select", typecode, "select 1");
+                string postState = PostUntil.PostPush("SelectState", typecode, "select 1");
                 interfacestate.Businesskey = typecode;
                 PostResultModel postmodel = PostUntil.JsonToObject<PostResultModel>(postState);
                 if (postmodel.code == 1)
@@ -116,16 +117,18 @@ namespace FanFormulaFramework.BusinessService.Controllers
         /// <param name="businesskey"></param>
         /// <param name="statetype"></param>
         /// <returns></returns>
-        public bool SetIntaceFaceState(int businesskey, string statetype)
+        public bool SetIntaceFaceState(int businesskey, string statetype,out string messaged)
         {
             string getState = PostUntil.GetPush(businesskey, statetype);
             PostResultModel getmodel = PostUntil.JsonToObject<PostResultModel>(getState);
             if (getmodel.code == 1)
             {
+                messaged = getmodel.data.ToString();
                 return true;
             }
             else
             {
+                messaged = getmodel.data.ToString();
                 return false;
             }
         }

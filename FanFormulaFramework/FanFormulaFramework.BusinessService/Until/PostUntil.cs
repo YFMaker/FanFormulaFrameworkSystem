@@ -30,7 +30,7 @@ namespace FanFormulaFramework.BusinessService.Until
         public static string PostPush(string typename,int businesskey,string sqlstring)
         {
             string url = BaseSystemInfo.ServerUrl + "db/" + typename;
-            string poststring = "businessKey=" + businesskey + "&sqlstring=" + sqlstring;
+            string poststring = "businessKey=" + businesskey;
             string result = string.Empty;
             try
             {
@@ -79,7 +79,16 @@ namespace FanFormulaFramework.BusinessService.Until
         /// <returns></returns>
         public static T JsonToObject<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json);
+            try
+            {
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception ex)
+            {
+                Loger.Warning(ex.Message);
+                return default(T);
+                //throw;
+            }
         }
 
         private static string Post(string url,string poststring)
@@ -112,27 +121,11 @@ namespace FanFormulaFramework.BusinessService.Until
         private static string Get(string url,string getstring)
         {
             string result = "";
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.Method = "GET";
-            req.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-            req.Headers.Add("Authorization", BaseSystemInfo.ServerRegisterKey);
-            byte[] data = Encoding.UTF8.GetBytes(getstring);//把字符串转换为字节
-
-            req.ContentLength = data.Length; //请求长度
-
-            using (Stream reqStream = req.GetRequestStream()) //获取
-            {
-                reqStream.Write(data, 0, data.Length);//向当前流中写入字节
-                reqStream.Close(); //关闭当前流
-            }
-
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse(); //响应结果
-            Stream stream = resp.GetResponseStream();
-            //获取响应内容
-            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-            {
-                result = reader.ReadToEnd();
-            }
+            WebClient webClient = new WebClient();
+            webClient.Encoding = Encoding.UTF8;
+            webClient.Headers.Add("Authorization", BaseSystemInfo.ServerRegisterKey);
+            string address = url + "?" + getstring;
+            result = webClient.DownloadString(address);
             return result;
         }
     }

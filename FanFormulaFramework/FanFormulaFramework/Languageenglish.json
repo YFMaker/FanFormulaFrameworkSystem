@@ -1,0 +1,8 @@
+{
+  "WarningWordOne": "The employee service database connection string is invalid！",
+  "WarningWordTwo": "The customer service database connection string is invalid！",
+  "WarningWordThree": "The service database connection string is invalid！",
+  "WarningWordFour": "The message service database connection string is invalid！",
+  "WarningWordFive": "The workflow service database connection string is invalid！",
+  "InformationWord": "three two one"
+}

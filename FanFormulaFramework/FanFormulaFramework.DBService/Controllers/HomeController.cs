@@ -68,14 +68,28 @@ namespace FanFormulaFramework.DBService.Controllers
         public ActionResult<object> SelectState()
         {
             Result result = new Result();
+            string message = "";
             try
             {
-                QueryCollection context = (QueryCollection)HttpContext.Request.Query;
-                int key = Convert.ToInt32(context["key"].ToString());
+                IFormCollection context = HttpContext.Request.Form;
+                //QueryCollection context = (QueryCollection)HttpContext.Request.Query;
+                int key = Convert.ToInt32(context["businessKey"].ToString());
                 if (Enum.GetName(typeof(RequestBusinessType), (RequestBusinessType)key) != null)
                 {
-                    ///TODO 未确定
                     
+                    bool isEnable = Models.DataBaseUtil.DBServices[(RequestBusinessType)key].IsEnable(out message);
+                    if (isEnable)
+                    {
+                        result.code = 1;
+                        result.message = "成功";
+                        result.data = message;
+                    }
+                    else
+                    {
+                        result.code = 2;
+                        result.message = "失败";
+                        result.data = message;
+                    }
                 }
                 else
                 {
@@ -87,7 +101,7 @@ namespace FanFormulaFramework.DBService.Controllers
             }
             catch (Exception ex)
             {
-                loger.Error(ex.Message);
+                loger.Error(message + ex.Message);
 
                 result.code = 0;
                 result.message = "失败";

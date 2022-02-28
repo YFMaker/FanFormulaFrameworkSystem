@@ -11,8 +11,11 @@
 using FanFormulaFramework.DBUtile;
 using FanFormulaFramework.Public;
 using FanFormulaFramework.Util;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -24,6 +27,8 @@ namespace FanFormulaFramework
 {
     class Program
     {
+        private static IConfiguration Configuration { get; set; }
+
         /// <summary>
         /// 测试控制台
         /// </summary>
@@ -52,9 +57,30 @@ namespace FanFormulaFramework
             //    dataBaseService.InsterSQL<LogBase>(logBase);
             //}
 
-            string test = Post("?businessKey=0&sqlstring=select top 10 * from CUM_Customer ");
+            //string test = Post("?businessKey=0&sqlstring=select top 10 * from CUM_Customer ");
+            //string test = get("key=1");
+            string _path = $"Languageenglish.json";// $"config.json";
+            string _basepath = System.IO.Directory.GetCurrentDirectory();
+            if (!File.Exists(_basepath + _path))
+            {
+                _basepath = AppContext.BaseDirectory;
+                if (!File.Exists(_basepath + _path))
+                {
+                    DirectoryInfo di = new DirectoryInfo(string.Format("{0}../../../", _basepath));//
+                    _basepath = di.FullName;
+                }
+                if (!File.Exists(_basepath + _path))
+                {
+                    Console.WriteLine("没有找到配置文件");
+                }
+            }
 
-            Console.WriteLine(test);
+            Console.WriteLine(_basepath);
+            Configuration = new ConfigurationBuilder()
+                 .SetBasePath(_basepath)
+               .Add(new JsonConfigurationSource { Path = _path, Optional = false, ReloadOnChange = true })
+               .Build();
+            //Console.WriteLine(test);
 
             Console.WriteLine(DateTime.Now.ToString("yyyy-MM-ddHHmmss"));
             //Console.WriteLine(DateTime.Today);
@@ -69,6 +95,21 @@ namespace FanFormulaFramework
             //loger.Information(MultiLanguage.NowLanguageString("叁貳壹", "mandarin"));
             //DateTimeUtil.TOString();
             Console.ReadLine();
+        }
+
+        public static string get(string str)
+        {
+            string result = "";
+
+            WebClient webClient = new WebClient();
+            webClient.Encoding = Encoding.UTF8;
+
+            webClient.Headers.Add("Authorization", "Z0TXYdpgyACBXAX");
+            string url = "http://192.168.88.128:8081/db/StartDB";
+            url = url + "?" + str;
+            result=webClient.DownloadString(url);
+
+            return result;
         }
 
         public static string Post(string str)

@@ -24,6 +24,13 @@ namespace FanFormulaFramework.DBService
         public static IWebHostBuilder CreateHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                    .UseUrls(HostUrl)
+            .ConfigureAppConfiguration((hostingContext, config) =>
+                   {
+                       config.AddJsonFile("appsettings.json",
+                           optional: true,
+                           reloadOnChange: false);
+                       //config.AddJsonFile($"appsettings.{environmentName}.json", true, false);
+                   })
                 .UseStartup<Startup>();
     }
 }

@@ -17,6 +17,9 @@
     <None Update="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Languageenglish.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Log.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

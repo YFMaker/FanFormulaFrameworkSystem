@@ -41,4 +41,10 @@
     <ProjectReference Include="..\FanFormulaFramework.Public\FanFormulaFramework.Public.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Log.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

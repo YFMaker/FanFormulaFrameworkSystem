@@ -12,7 +12,6 @@
     <meta name="author" content="stacks">
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
-    <title>@ViewData["TitleName"]</title>
 
     <!-- Styles -->
     <link href="~/css/css.css" rel="stylesheet">
@@ -56,7 +55,7 @@
                 <nav class="navbar navbar-expand-lg d-flex justify-content-between">
                     <div class="header-title flex-fill">
                         <a href="#" id="sidebar-toggle"><i data-feather="arrow-left"></i></a>
-                        <h5>@ViewData["TitleName"]</h5>
+                        <h5>@ViewData["Title"]</h5>
                     </div>
                 </nav>
             </div>
@@ -65,7 +64,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">@ViewData["TitleName"]</h5>
+                                <h5 class="card-title">@ViewData["Title"]</h5>
                                 <p class="card-description">@ViewData["TitleOther"]</p>
 
                                 <div class="row">

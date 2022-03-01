@@ -33,7 +33,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
         /// 标题
         /// </summary>
         [ViewData]
-        public string TitleName { get; set; }
+        public string Title { get; set; }
         /// <summary>
         /// 其他信息
         /// </summary>
@@ -48,7 +48,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
 
         public IActionResult Index()
         {
-            TitleName = "接口状态";
+            Title = "接口状态";
             TitleOther = "各接口信息为实时验证结果。";
             SelectIntaceFaceState();
             Message = "接口检测结果";
@@ -62,7 +62,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
             string message = "";
             bool result=SetIntaceFaceState(businesskey,statetype,out message);
 
-            TitleName = "接口状态";
+            Title = "接口状态";
             TitleOther = "各接口信息为实时验证结果。";
             SelectIntaceFaceState();
             Message = result==true?"":message;

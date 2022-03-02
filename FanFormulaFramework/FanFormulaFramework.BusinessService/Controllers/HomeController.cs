@@ -99,6 +99,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
                     interfacestate.InterFaceName = Enum.GetName(typeof(RequestBusinessType), typecode);
                     interfacestate.InterFaceStated = true;
                     interfacestate.Remarke = postmodel.message;
+                    Models.OperationBaseUtil.AddInterface(interfacestate);
                 }
                 else
                 {
@@ -123,6 +124,10 @@ namespace FanFormulaFramework.BusinessService.Controllers
             PostResultModel getmodel = PostUntil.JsonToObject<PostResultModel>(getState);
             if (getmodel.code == 1)
             {
+                if(statetype== "CloseDB")
+                {
+                    Models.OperationBaseUtil.RemoveInterface(businesskey);
+                }
                 messaged = getmodel.data.ToString();
                 return true;
             }

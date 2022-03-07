@@ -20,7 +20,6 @@ namespace FanFormulaFramework.DBService
         {
             Configuration = configuration;
             DataBaseUtil.init();
-            Permissions.Init();
         }
 
         public IConfiguration Configuration { get; }
@@ -36,12 +35,10 @@ namespace FanFormulaFramework.DBService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IApplicationLifetime appLifetime)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+            appLifetime.ApplicationStarted.Register(OnStarted);
 
             app.UseRouting();
 
@@ -52,6 +49,12 @@ namespace FanFormulaFramework.DBService
                      pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+        }
+
+        private void OnStarted()
+        {
+            Permissions.Init();
+            Console.WriteLine("服务启动完成。");
         }
     }
 }

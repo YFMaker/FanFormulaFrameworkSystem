@@ -31,16 +31,11 @@ namespace FanFormulaFramework.BusinessService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostApplicationLifetime appLifetime)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+
+            appLifetime.ApplicationStarted.Register(OnStarted);
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -53,6 +48,13 @@ namespace FanFormulaFramework.BusinessService
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void OnStarted()
+        {
+            ///TODO 服务启动后执行
+            
+            
         }
     }
 }

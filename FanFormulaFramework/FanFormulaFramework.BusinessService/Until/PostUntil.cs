@@ -27,7 +27,7 @@ namespace FanFormulaFramework.BusinessService.Until
         /// 请求接口(定向专用)
         /// </summary>
         /// <returns></returns>
-        public static string PostPush(string typename,int businesskey,string sqlstring)
+        public static string PostPush(string typename,int businesskey)
         {
             string url = BaseSystemInfo.ServerUrl + "db/" + typename;
             string poststring = "businessKey=" + businesskey;
@@ -60,6 +60,32 @@ namespace FanFormulaFramework.BusinessService.Until
             try
             {
                 result = Get(url, getstring);
+            }
+            catch (Exception ex)
+            {
+                Loger.Warning(ex.Message);
+                return "404";
+                //throw;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 请求接口
+        /// </summary>
+        /// <param name="businesskey"></param>
+        /// <param name="typename"></param>
+        /// <param name="sqlstring"></param>
+        /// <returns></returns>
+        public static string PostPush(int businesskey,string typename,string sqlstring)
+        {
+            string url = BaseSystemInfo.ServerUrl + "db/" + typename;
+            string poststring = "businessKey=" + businesskey+ "&sqlstring="+sqlstring;
+            string result = string.Empty;
+            try
+            {
+                result = Post(url, poststring);
             }
             catch (Exception ex)
             {

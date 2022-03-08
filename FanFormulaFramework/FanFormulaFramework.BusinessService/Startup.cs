@@ -1,3 +1,4 @@
+using FanFormulaFramework.BusinessService.Until;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -53,8 +54,9 @@ namespace FanFormulaFramework.BusinessService
         private void OnStarted()
         {
             ///TODO 服务启动后执行
-            
-            
+
+            Console.WriteLine("服务启动完成。");
+            LogUtil.Init();
         }
     }
 }

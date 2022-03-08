@@ -91,7 +91,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
             for (int typecode = 0; typecode < 5; typecode++)
             {
                 InterfaceState interfacestate = new InterfaceState();
-                string postState = PostUntil.PostPush("SelectState", typecode, "select 1");
+                string postState = PostUntil.PostPush("SelectState", typecode);
                 interfacestate.Businesskey = typecode;
                 PostResultModel postmodel = PostUntil.JsonToObject<PostResultModel>(postState);
                 if (postmodel.code == 1)

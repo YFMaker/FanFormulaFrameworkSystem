@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.Util", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.DBService", "FanFormulaFramework.DBService\FanFormulaFramework.DBService.csproj", "{00E591F0-3DCB-4727-A5F7-BBAD2167A8AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanFormulaFramework.BusinessService", "FanFormulaFramework.BusinessService\FanFormulaFramework.BusinessService.csproj", "{AE5030AB-3FA8-4219-804B-F6F84CF35DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.BusinessService", "FanFormulaFramework.BusinessService\FanFormulaFramework.BusinessService.csproj", "{AE5030AB-3FA8-4219-804B-F6F84CF35DF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

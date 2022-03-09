@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -49,7 +50,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
                         result.code = 1;
                         result.message = "成功";
                         logBase.PerformContent += "    @成功";
-                        result.data = postmodel.data;
+                        result.data = ResultData(performtype,postmodel.data);
                     }
                     else
                     {
@@ -92,6 +93,42 @@ namespace FanFormulaFramework.BusinessService.Controllers
             }
         }
 
+        /// <summary>
+        /// 返回参数一次处理
+        /// 处理结果方便逻辑层赋值
+        /// </summary>
+        /// <param name="performtype"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private object ResultData(string performtype,object data)
+        {
+            switch (performtype)
+            {
+                case "select":
+                case "Select":
+                    if (data.GetType() == typeof(string))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        DataTable result = (DataTable)data;
+                        return result;
+                    }
+                case "Insert":
+                case "insert":
+                    return data;
+                case "delete":
+                case "Delete":
+                    return data;
+                case "Update":
+                case "update":
+                    return data;
+                default:
+                    return "输入字符非法！";
+            }
+            return null;
+        }
 
     }
 }

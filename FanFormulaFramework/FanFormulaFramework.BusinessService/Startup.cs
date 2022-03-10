@@ -55,8 +55,9 @@ namespace FanFormulaFramework.BusinessService
         {
             ///TODO 服务启动后执行
 
-            Console.WriteLine("服务启动完成。");
             LogUtil.Init();
+            Permissions.Init();
+            Console.WriteLine("服务启动完成。");
         }
     }
 }

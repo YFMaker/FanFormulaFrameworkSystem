@@ -1,4 +1,5 @@
-﻿using FanFormulaFramework.BusinessService.Models;
+﻿using FanFormulaFramework.BusinessService.Authorized;
+using FanFormulaFramework.BusinessService.Models;
 using FanFormulaFramework.BusinessService.Until;
 using FanFormulaFramework.Public;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
 {
     [ApiController]
     [Route("operation/[action]")]
+    [BasicAuth]
     public class BusinessController : Controller
     {
 

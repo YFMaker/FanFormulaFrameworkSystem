@@ -1,0 +1,12 @@
+{
+  //--------------HOST配置-----------------//
+  "Host": "127.0.0.1",
+  "Port": 8083,
+  //-----------------DBServerConfig--------//
+  /*业务服务加密信息(以业务服务注册码为标准)*/
+  "ServerRegisterKey": "WEbmnKbCC2ceU6Y",
+  /*业务服务地址带端口*/
+  "ServerUrl": "http://192.168.88.133:8082/",
+  /*软件注册码*/
+  "SystemRegistrationCode": "this is one regis"
+}

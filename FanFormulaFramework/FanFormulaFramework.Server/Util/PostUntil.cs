@@ -8,7 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FanFormulaFramework.Service.Util
+namespace FanFormulaFramework.Server
 {
     public class PostUntil
     {
@@ -27,10 +27,10 @@ namespace FanFormulaFramework.Service.Util
         /// <param name="performtype"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static string PostPush(string businessname,string performtype, string content)
+        public static string PostPush(string businessname, string performtype, string content)
         {
             string url = BaseSystemInfo.ServerUrl + "operation/ExecutionBusiness";
-            string poststring = "businessname=" + businessname + "&performtype="+ performtype + "&content=" + content;
+            string poststring = "businessname=" + businessname + "&performtype=" + performtype + "&content=" + content;
             string result = string.Empty;
             try
             {

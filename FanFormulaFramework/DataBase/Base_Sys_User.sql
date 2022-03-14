@@ -39,7 +39,7 @@ CREATE TABLE `Base_Sys_User`  (
   `Birthday` datetime NOT NULL COMMENT '出生日期',
   `IDCardNum` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'ID卡号',
   `TelePhone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号',
-  `UserPassWord` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户密码',
+  `UserPassWord` varchar(400) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户密码',
   `Theme` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '主题',
   `IsStaff` int(255) UNSIGNED ZEROFILL NOT NULL COMMENT '是否员工',
   `IsVisibls` int(255) UNSIGNED ZEROFILL NOT NULL COMMENT '是否查询\r\n',

@@ -15,7 +15,7 @@ namespace FanFormulaFramework.Server
             Logger = new ILoger<IControllers>();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult<object> Qet()
         {
            

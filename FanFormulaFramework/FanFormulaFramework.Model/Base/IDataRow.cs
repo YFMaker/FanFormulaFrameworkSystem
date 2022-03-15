@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace FanFormulaFramework.Model
 {
-    public class IBaseModel
+    public interface IDataRow
     {
-
-
-
-
-
-        protected void GetSql()
-        {
-
-        }
+        object this[string name] { get; }
+        object this[int i] { get; }
+        bool ContainsColumn(string columnName);
     }
 }

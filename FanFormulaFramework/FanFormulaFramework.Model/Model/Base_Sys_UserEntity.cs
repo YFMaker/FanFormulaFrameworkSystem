@@ -14,7 +14,6 @@ namespace FanFormulaFramework.Model
         /// </summary>
         public Base_Sys_UserEntity()
         {
-
         }
 
         /// <summary>

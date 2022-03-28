@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YFMakeEncryption", "YFMakeEncryption\YFMakeEncryption.csproj", "{63A448B4-8FB4-4A34-9CCD-0C3AEA967240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{03622FD2-907E-4CAC-BEC4-4971F9DD4915}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{03622FD2-907E-4CAC-BEC4-4971F9DD4915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{F8E9EE5B-1844-41A5-B58F-ABED0CE42F79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{F8E9EE5B-1844-41A5-B58F-ABED0CE42F79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YFMakeModels", "YFMakeModels\YFMakeModels.csproj", "{1A0CEE73-011E-43F0-BEE7-557564BB2FD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FanFormulaFramework.DBUtile", "..\FanFormulaFramework\FanFormulaFramework.DBUtile\FanFormulaFramework.DBUtile.csproj", "{869C8E88-0904-4B9E-B60A-C47D62D669EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{F8E9EE5B-1844-41A5-B58F-ABED0CE42F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8E9EE5B-1844-41A5-B58F-ABED0CE42F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8E9EE5B-1844-41A5-B58F-ABED0CE42F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A0CEE73-011E-43F0-BEE7-557564BB2FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A0CEE73-011E-43F0-BEE7-557564BB2FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A0CEE73-011E-43F0-BEE7-557564BB2FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A0CEE73-011E-43F0-BEE7-557564BB2FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{869C8E88-0904-4B9E-B60A-C47D62D669EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{869C8E88-0904-4B9E-B60A-C47D62D669EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{869C8E88-0904-4B9E-B60A-C47D62D669EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{869C8E88-0904-4B9E-B60A-C47D62D669EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

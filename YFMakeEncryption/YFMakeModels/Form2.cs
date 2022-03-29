@@ -17,6 +17,7 @@ namespace YFMakeModels
         {
             InitializeComponent();
         }
+
         private DataBaseService date;
         public Form2(DataBaseService _date)
         {
@@ -32,6 +33,7 @@ namespace YFMakeModels
         private void Form2_Load(object sender, EventArgs e)
         {
             this.Text = "实体创建";
+            tB_Mulu.Text = AppDomain.CurrentDomain.BaseDirectory.ToString();
             Loader();
         }
 
@@ -63,9 +65,27 @@ namespace YFMakeModels
             }
         }
 
+        private string LibraryName = string.Empty;
+
         private void tV_Table_AfterSelect(object sender, TreeViewEventArgs e)
         {
             lb_TableName.Text = tV_Table.SelectedNode.Text;
+            if (tV_Table.SelectedNode.Parent != null)
+            {
+                LibraryName = tV_Table.SelectedNode.Parent.Text;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = "请选择文件路径";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+               string savePath = dialog.SelectedPath;
+                tB_Mulu.Text = savePath;
+            }
         }
     }
 }

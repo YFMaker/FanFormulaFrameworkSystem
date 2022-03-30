@@ -1,0 +1,42 @@
+﻿#region
+//*********************************************************
+//
+//本MODEL由 衣凡 生成器创建
+//
+//创建人：createuser
+//
+//创建时间：datetime
+//*********************************************************
+#endregion
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FanFormulaFramework.Model
+{
+    public partial class {0} : BaseEntity
+    {
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public {0}()
+        {
+        }
+
+{1}
+
+        /// <summary>
+        /// 从数据行读取
+        /// </summary>
+        /// <param name="dataRow"></param>
+        /// <returns></returns>
+        protected override BaseEntity GetFrom(IDataRow dataRow)
+        {
+           {2}
+           return this;
+        }
+    }
+}

@@ -50,6 +50,17 @@ namespace FanFormulaFramework.Public
             return dateTime;
         }
 
+        /// <summary>
+        /// 字符串转时间
+        /// String turn time
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public static DateTime ToTime(string time)
+        {
+            return Convert.ToDateTime(time);
+        }
+
 
         /// <summary>
         /// 日期转字符串

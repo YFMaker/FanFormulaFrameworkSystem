@@ -10,4 +10,10 @@
     <ProjectReference Include="..\..\FanFormulaFramework\FanFormulaFramework.DBUtile\FanFormulaFramework.DBUtile.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Model.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

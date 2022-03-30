@@ -27,7 +27,7 @@ namespace FanFormulaFramework.Model
         /// 主键
         /// </summary>
         [NonSerialized]
-        public static string FiledID = "ID";
+        public static string FieldID = "ID";
 
         ///<summary>
         /// 编号（内部）

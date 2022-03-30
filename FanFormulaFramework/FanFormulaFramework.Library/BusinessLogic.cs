@@ -19,6 +19,10 @@ namespace FanFormulaFramework.Library
 
         }
 
+        public static string ConvertToString(object targetValue)
+        {
+            return Convert.ToString(targetValue);
+        }
 
         public static bool ConvertIntToBoolean(object targetValue)
         {

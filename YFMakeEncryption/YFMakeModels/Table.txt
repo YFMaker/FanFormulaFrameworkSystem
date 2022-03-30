@@ -1,0 +1,40 @@
+﻿#region
+//*********************************************************
+//
+//本TABLE由 衣凡 生成器创建
+//
+//创建人：createuser
+//
+//创建时间：datetime
+//*********************************************************
+#endregion
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FanFormulaFramework.Model
+{
+    /// <summary>
+    /// Base_Sys_UserTable
+    /// </summary>
+    public partial class {0}Table
+    {
+        ///<summary>
+        /// 表名
+        ///</summary>
+        [NonSerialized]
+        public static string TableName = "{0}";
+
+        /// <summary>
+        /// 业务服务名称
+        /// </summary>
+        [NonSerialized]
+        public static string BusinessName = "";
+
+{1}
+
+    }
+}

@@ -35,6 +35,7 @@ namespace YFMakeModels
         {
             this.Text = "实体创建";
             tB_Directory.Text = AppDomain.CurrentDomain.BaseDirectory.ToString();
+            tB_CreateUser.Text = "YF";
             Loader();
         }
 
@@ -122,6 +123,7 @@ namespace YFMakeModels
         /// </summary>
         private void SpannedFile()
         {
+            ///根据数据库类型重写编写
             string selectTableSql = string.Format("select COLUMN_NAME,COLUMN_TYPE,column_comment from INFORMATION_SCHEMA.Columns where table_name='{0}' and table_schema='{1}'", lb_TableName.Text, LibraryName);
             DataTable selectdataTable=date.SelectSQL(selectTableSql);
             if (selectdataTable != null)
@@ -166,12 +168,16 @@ namespace YFMakeModels
             {
                 Directory.CreateDirectory(tB_Directory.Text + @"\\Model\\");
             }
-            StreamWriter SpannedFile = new StreamWriter(tB_Directory.Text+@"\\Model\\" + lb_TableName.Text + ".cs", true);
+            if (File.Exists(tB_Directory.Text + @"\\Table\\" + lb_TableName.Text + ".cs"))
+            {
+                File.Delete(tB_Directory.Text + @"\\Table\\" + lb_TableName.Text + ".cs");
+            }
+            StreamWriter SpannedFile = new StreamWriter(tB_Directory.Text+@"\\Model\\" + lb_TableName.Text + "Entity.cs", true);
             StreamReader TemplateFile = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "Model.txt", System.Text.Encoding.GetEncoding("GB2312"));
             string templatestring = TemplateFile.ReadToEnd();
             //templatestring=templatestring.Replace("{0}", lb_TableName.Text + "Entity");
             TemplateString.Append(templatestring);
-            TemplateString.Replace("createuser", "YF");
+            TemplateString.Replace("createuser", tB_CreateUser.Text);
             TemplateString.Replace("datetime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             TemplateString.Replace("{0}", lb_TableName.Text + "Entity");
             StringBuilder valuestring = new StringBuilder();
@@ -187,7 +193,7 @@ namespace YFMakeModels
                     item["column_comment"].ToString(): item["COLUMN_NAME"].ToString());
                 stringBuilder.Append(@"        /// </summary>" + Environment.NewLine);
                 stringBuilder.AppendFormat(@"        public {0} {1}" + Environment.NewLine,
-                    Util.Typename(item["COLUMN_TYPE"].ToString()), "_" + item["COLUMN_NAME"].ToString());
+                    Util.Typename(item["COLUMN_TYPE"].ToString()), item["COLUMN_NAME"].ToString());
                 stringBuilder.Append(@"        {" + Environment.NewLine);
                 stringBuilder.Append(@"            get" + Environment.NewLine);
                 stringBuilder.Append(@"            {" + Environment.NewLine);
@@ -200,19 +206,18 @@ namespace YFMakeModels
                 stringBuilder.Append(@"        }" + Environment.NewLine);
                 stringBuilder.Append(Environment.NewLine );
                 valuestring.Append(stringBuilder);
+                bindingstring.AppendFormat("           this." + item["COLUMN_NAME"].ToString() +
+                    " = BusinessLogic.ConvertTo" + Util.TypeName(item["COLUMN_TYPE"].ToString()) + "(dataRow[{0}Table.Field{1}]);" + Environment.NewLine,
+                    lb_TableName.Text, item["COLUMN_NAME"].ToString());
                 LoadNum++;
             }
-            TemplateString.Replace("{1}", valuestring.ToString());
-
-
-
-
-
-
+            TemplateString = TemplateString.Replace("{1}", valuestring.ToString());
+            TemplateString = TemplateString.Replace("{2}", bindingstring.ToString());
 
             SpannedFile.WriteLine(TemplateString.ToString());
             SpannedFile.Close();
             TemplateFile.Close();
+            Closeing("生成实体类 --- 完成。");
         }
 
         /// <summary>
@@ -222,6 +227,46 @@ namespace YFMakeModels
         private void SpannedTable(DataTable dataTable)
         {
             Starting("生成表结构中... ...", dataTable.Rows.Count);
+
+            StringBuilder TemplateString = new StringBuilder();
+            if (!Directory.Exists(tB_Directory.Text + @"\\Table\\"))
+            {
+                Directory.CreateDirectory(tB_Directory.Text + @"\\Table\\");
+            }
+            if (File.Exists(tB_Directory.Text + @"\\Table\\" + lb_TableName.Text + ".cs"))
+            {
+                File.Delete(tB_Directory.Text + @"\\Table\\" + lb_TableName.Text + ".cs");
+            }
+            StreamWriter SpannedFile = new StreamWriter(tB_Directory.Text + @"\\Table\\" + lb_TableName.Text + "Table.cs", true);
+            StreamReader TemplateFile = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "Table.txt", System.Text.Encoding.GetEncoding("GB2312"));
+            string templatestring = TemplateFile.ReadToEnd();
+            //templatestring=templatestring.Replace("{0}", lb_TableName.Text + "Entity");
+            TemplateString.Append(templatestring);
+            TemplateString.Replace("createuser", tB_CreateUser.Text);
+            TemplateString.Replace("datetime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            TemplateString.Replace("{0}", lb_TableName.Text );
+            StringBuilder valuestring = new StringBuilder();
+            foreach (DataRow item in dataTable.Rows)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(@"        /// <summary>" + Environment.NewLine);
+                stringBuilder.AppendFormat(@"        /// {0}" + Environment.NewLine,
+                    string.IsNullOrEmpty(item["column_comment"].ToString()) == false ?
+                    item["column_comment"].ToString() : item["COLUMN_NAME"].ToString());
+                stringBuilder.Append(@"        /// </summary>" + Environment.NewLine);
+                stringBuilder.Append(@"        [NonSerialized]" + Environment.NewLine);
+                stringBuilder.AppendFormat("        public static string Field{0} = \"{0}\"" 
+                    + Environment.NewLine, item["COLUMN_NAME"].ToString());
+                stringBuilder.Append(Environment.NewLine);
+                valuestring.Append(stringBuilder);
+                LoadNum++;
+            }
+            TemplateString = TemplateString.Replace("{1}", valuestring.ToString());
+
+            SpannedFile.WriteLine(TemplateString.ToString());
+            SpannedFile.Close();
+            TemplateFile.Close();
+            Closeing("生成表结构 --- 完成。");
         }
 
         /// <summary>
@@ -231,6 +276,29 @@ namespace YFMakeModels
         private void SpannedApi(DataTable dataTable)
         {
             Starting("生成API中... ...", dataTable.Rows.Count);
+            StringBuilder TemplateString = new StringBuilder();
+            if (!Directory.Exists(tB_Directory.Text + @"\\Controller\\"))
+            {
+                Directory.CreateDirectory(tB_Directory.Text + @"\\Controller\\");
+            }
+            if (File.Exists(tB_Directory.Text + @"\\Controller\\" + lb_TableName.Text + ".cs"))
+            {
+                File.Delete(tB_Directory.Text + @"\\Controller\\" + lb_TableName.Text + ".cs");
+            }
+            StreamWriter SpannedFile = new StreamWriter(tB_Directory.Text + @"\\Controller\\" + lb_TableName.Text + "Controller.cs", true);
+            StreamReader TemplateFile = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "Controller.txt", System.Text.Encoding.GetEncoding("GB2312"));
+            string templatestring = TemplateFile.ReadToEnd();
+            //templatestring=templatestring.Replace("{0}", lb_TableName.Text + "Entity");
+            TemplateString.Append(templatestring);
+            TemplateString.Replace("createuser", tB_CreateUser.Text);
+            TemplateString.Replace("datetime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            TemplateString.Replace("{0}", lb_TableName.Text);
+
+            SpannedFile.WriteLine(TemplateString.ToString());
+            SpannedFile.Close();
+            TemplateFile.Close();
+
+            Closeing("生成API --- 完成。");
         }
 
 
@@ -248,6 +316,20 @@ namespace YFMakeModels
             if (!StartTime.Enabled)//首次启动，启动 计时器（刷新 进度条）
             {
                 StartTime.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// 关闭事件（每个文件生成结束时触发）
+        /// </summary>
+        /// <param name="closename"></param>
+        private void Closeing(string closename)
+        {
+            LoadNum = 0;
+            lb_StartName.Text = closename;
+            if (StartTime.Enabled)//关闭计时器
+            {
+                StartTime.Enabled = false;
             }
         }
 

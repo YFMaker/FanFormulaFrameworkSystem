@@ -1,0 +1,30 @@
+﻿#region
+//*********************************************************
+//
+//本Controller由 衣凡 生成器创建
+//
+//创建人：createuser
+//
+//创建时间：datetime
+//*********************************************************
+#endregion
+
+using FanFormulaFramework.Public;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FanFormulaFramework.Server
+{
+    public class {0}Controller : IControllers
+    {
+        public {0}Controller()
+        {
+            Logger = new ILoger<IControllers>();
+        }
+
+    }
+}

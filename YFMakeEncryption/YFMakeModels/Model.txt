@@ -8,11 +8,13 @@
 //创建时间：datetime
 //*********************************************************
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FanFormulaFramework.Library;
 
 namespace FanFormulaFramework.Model
 {
@@ -35,7 +37,7 @@ namespace FanFormulaFramework.Model
         /// <returns></returns>
         protected override BaseEntity GetFrom(IDataRow dataRow)
         {
-           {2}
+{2}
            return this;
         }
     }

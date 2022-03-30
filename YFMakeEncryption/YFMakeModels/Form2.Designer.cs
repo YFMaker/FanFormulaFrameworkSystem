@@ -51,6 +51,8 @@ namespace YFMakeModels
             this.lb_Message = new System.Windows.Forms.Label();
             this.lb_StartName = new System.Windows.Forms.Label();
             this.StartTime = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.tB_CreateUser = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,7 +111,7 @@ namespace YFMakeModels
             // 
             // bt_Make
             // 
-            this.bt_Make.Location = new System.Drawing.Point(702, 121);
+            this.bt_Make.Location = new System.Drawing.Point(702, 142);
             this.bt_Make.Name = "bt_Make";
             this.bt_Make.Size = new System.Drawing.Size(75, 23);
             this.bt_Make.TabIndex = 5;
@@ -186,7 +188,7 @@ namespace YFMakeModels
             this.groupBox1.Controls.Add(this.cBTable);
             this.groupBox1.Controls.Add(this.checkBox4);
             this.groupBox1.Controls.Add(this.cBApi);
-            this.groupBox1.Location = new System.Drawing.Point(231, 111);
+            this.groupBox1.Location = new System.Drawing.Point(231, 132);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(455, 180);
             this.groupBox1.TabIndex = 7;
@@ -237,14 +239,31 @@ namespace YFMakeModels
             // 
             // StartTime
             // 
-            this.StartTime.Interval = 10;
             this.StartTime.Tick += new System.EventHandler(this.StartTime_Tick);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(231, 100);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "生成人：";
+            // 
+            // tB_CreateUser
+            // 
+            this.tB_CreateUser.Location = new System.Drawing.Point(314, 94);
+            this.tB_CreateUser.Name = "tB_CreateUser";
+            this.tB_CreateUser.Size = new System.Drawing.Size(119, 23);
+            this.tB_CreateUser.TabIndex = 13;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tB_CreateUser);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lb_StartName);
             this.Controls.Add(this.lb_Message);
             this.Controls.Add(this.label4);
@@ -291,5 +310,7 @@ namespace YFMakeModels
         private System.Windows.Forms.Label lb_Message;
         private System.Windows.Forms.Label lb_StartName;
         private System.Windows.Forms.Timer StartTime;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tB_CreateUser;
     }
 }

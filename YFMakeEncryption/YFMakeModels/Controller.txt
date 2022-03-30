@@ -26,5 +26,16 @@ namespace FanFormulaFramework.Server
             Logger = new ILoger<IControllers>();
         }
 
+        ///<summary>
+        /// 基础查询接口
+        ///</summary>
+        [HttpGet]
+        public ActionResult<object> Get{0}Table()
+        {
+            string resule=PostUntil.PostPush({0}Table.BusinessName, "select", "select * from " + {0}Table.TableName);
+
+            return resule;
+        }
+
     }
 }

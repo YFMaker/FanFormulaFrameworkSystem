@@ -9,6 +9,7 @@
 //*********************************************************
 #endregion
 
+using FanFormulaFramework.Model;
 using FanFormulaFramework.Public;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,7 +30,9 @@ namespace FanFormulaFramework.Server
         [HttpGet]
         public ActionResult<object> GetBase_Sys_UserTable()
         {
-            return "123123";
+            string resule=PostUntil.PostPush(Base_Sys_UserTable.BusinessName, "select", "select * from " + Base_Sys_UserTable.TableName);
+
+            return resule;
         }
 
     }

@@ -21,7 +21,7 @@ namespace FanFormulaFramework.Model
         /// 业务服务名称
         /// </summary>
         [NonSerialized]
-        public static string BusinessName = "";
+        public static string BusinessName = "StaffServer";
 
         /// <summary>
         /// 主键

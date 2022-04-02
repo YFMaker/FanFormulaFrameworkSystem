@@ -30,6 +30,7 @@ namespace FanFormulaFramework.Server
         /// 基础查询接口
         ///</summary>
         [HttpGet]
+        [ActionName("")]//根据实际需要定义功能接口名称，防止action名称冲突
         public ActionResult<object> Get{0}Table()
         {
             string resule=PostUntil.PostPush({0}Table.BusinessName, "select", "select * from " + {0}Table.TableName);

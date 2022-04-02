@@ -9,6 +9,7 @@
 //*********************************************************
 #endregion
 
+using FanFormulaFramework.Library;
 using FanFormulaFramework.Model;
 using FanFormulaFramework.Public;
 using Microsoft.AspNetCore.Mvc;
@@ -28,11 +29,19 @@ namespace FanFormulaFramework.Server
         }
 
         [HttpGet]
+        [ActionName("GetBaseUser")]//根据实际需要定义功能接口名称，防止action名称冲突
         public ActionResult<object> GetBase_Sys_UserTable()
         {
             string resule=PostUntil.PostPush(Base_Sys_UserTable.BusinessName, "select", "select * from " + Base_Sys_UserTable.TableName);
 
             return resule;
+        }
+
+        public ActionResult<object> InsertBase_Sys_UserTable()
+        {
+            Base_Sys_UserEntity entity = new Base_Sys_UserEntity();
+            entity.ID = BusinessLogic.NewGuid();
+            return "";
         }
 
     }

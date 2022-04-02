@@ -49,6 +49,13 @@ namespace FanFormulaFramework.Library
             return Convert.ToDecimal(targetValue);
         }
 
+        public static string NewGuid()
+        {
+            string restul = Guid.NewGuid().ToString("D");
+
+            return restul;
+        }
+
         public static double ConvertToDouble(object targetValue)
         {
             return Convert.ToDouble(targetValue);

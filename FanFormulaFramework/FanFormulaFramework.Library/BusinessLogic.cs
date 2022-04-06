@@ -86,5 +86,17 @@ namespace FanFormulaFramework.Library
             return Convert.ToInt32(targetValue);
         }
        
+
+        public static string ConverToSQL(object targetValue)
+        {
+            return "";
+        }
+
+        public static string ConverToSQL<T>(object targetValue)
+        {
+
+            return "";
+        }
+
     }
 }

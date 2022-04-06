@@ -8,4 +8,10 @@
     <ProjectReference Include="..\FanFormulaFramework.Library\FanFormulaFramework.Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="YFMakeEncryption">
+      <HintPath>..\Library\YFMakeEncryption.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

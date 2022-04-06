@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YFMakeEncryption;
 
 namespace FanFormulaFramework.Server
 {
@@ -37,10 +38,28 @@ namespace FanFormulaFramework.Server
             return resule;
         }
 
+        [HttpPost]
+        [ActionName("RegisteredUser")]
         public ActionResult<object> InsertBase_Sys_UserTable()
         {
             Base_Sys_UserEntity entity = new Base_Sys_UserEntity();
             entity.ID = BusinessLogic.NewGuid();
+            entity.Code = "root";
+            entity.UserName = "Administrator";
+            entity.RealName = "超级管理员";
+            entity.NickName = "超级管理员";
+            entity.QuickQuery = "超级管理员";
+            entity.UserPassWord = PassWordUtil.DecryptInformation("Y950509f");
+            entity.Gender = "男";
+            entity.Theme = "无";
+            entity.IsStaff = 0;
+            entity.IsVisibls = 1;
+            entity.IsEnabled = 1;
+            entity.IsDelete = 0;
+            entity.CreateBy = "root";
+            entity.CreateTime = DateTimeUtil.Now();
+            entity.CreateUserId = "root";
+            string result = PostUntil.PostPush(Base_Sys_UserTable.BusinessName, "insert", "");
             return "";
         }
 

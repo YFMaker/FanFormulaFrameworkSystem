@@ -38,7 +38,7 @@ namespace FanFormulaFramework.BusinessService.Controllers
                 //QueryCollection context = (QueryCollection)HttpContext.Request.Query;
                 string businessname = context["businessname"].ToString();
                 int businesskey = OperationBaseUtil.GetInterface(businessname);
-                if (businesskey > 0)
+                if (businesskey >= 0)
                 {
                     string content = context["content"].ToString();
                     string performtype = context["performtype"].ToString();

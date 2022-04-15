@@ -2,6 +2,7 @@
 using FanFormulaFramework.Public;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -92,10 +93,12 @@ namespace FanFormulaFramework.Library
             return "";
         }
 
-        public static string ConverToSQL<T>(object targetValue)
+        public static string ConverToSQL<T>(T targetValue,string TableName, MakeType type = MakeType.Inster, Dictionary<string, object> update = null, Dictionary<string, object> wheredate = null)
         {
-
-            return "";
+            string sql = DataUtilLibrary.MakeSqlstring<T>(targetValue, type, update, wheredate);
+            string entityname = typeof(T).Name;
+            sql=sql.Replace(entityname, TableName);
+            return sql;
         }
 
     }

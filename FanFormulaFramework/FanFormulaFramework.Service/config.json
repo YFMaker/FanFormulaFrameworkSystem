@@ -8,5 +8,8 @@
   /*业务服务地址带端口*/
   "ServerUrl": "http://192.168.88.133:8082/",
   /*软件注册码*/
-  "SystemRegistrationCode": "this is one regis"
+  "SystemRegistrationCode": "this is one regis",
+  /*数据库类型框架 设定所有业务数据库均使用统一数据库类型*/
+  /*SQLSERVER:1 MYSQL:2 ORACLE:3 SQLITE:4 MONGODB:5 ACCESS:6*/
+  "DataBaseType": 2
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FanFormulaFramework.DBUtile;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +20,12 @@ namespace FanFormulaFramework.Public
         /// 端口号
         /// </summary>
         public static int Port = 8988;
+
+        /// <summary>
+        /// 数据库类型（设计模型默认概念为全库统一数据库类型）
+        /// 默认数据库MS SQL SERVER
+        /// </summary>
+        public static CurrentDbType DataBaseType = CurrentDbType.MicrosoftSQLServer;
 
         /// <summary>
         /// 允许新用户注册

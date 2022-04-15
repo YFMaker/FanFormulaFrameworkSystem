@@ -49,7 +49,7 @@ namespace FanFormulaFramework.Server
             entity.RealName = "超级管理员";
             entity.NickName = "超级管理员";
             entity.QuickQuery = "超级管理员";
-            entity.UserPassWord = PassWordUtil.DecryptInformation("Y950509f");
+            entity.UserPassWord = PassWordUtil.EncryptedInformation("Y950509f");
             entity.Gender = "男";
             entity.Theme = "无";
             entity.IsStaff = 0;
@@ -59,8 +59,9 @@ namespace FanFormulaFramework.Server
             entity.CreateBy = "root";
             entity.CreateTime = DateTimeUtil.Now();
             entity.CreateUserId = "root";
-            string result = PostUntil.PostPush(Base_Sys_UserTable.BusinessName, "insert", "");
-            return "";
+            string sqlstring = BusinessLogic.ConverToSQL<Base_Sys_UserEntity>(entity,Base_Sys_UserTable.TableName, MakeType.Inster);
+            string result = PostUntil.PostPush(Base_Sys_UserTable.BusinessName, "insert", sqlstring);
+            return result;
         }
 
     }

@@ -128,6 +128,7 @@ namespace FanFormulaFramework.Public
             {
                 BaseSystemInfo.Port = ConfigurationManagerd.Appsetting<int>("Port");
             }
+            BaseSystemInfo.DataBaseType = ConfigurationManagerd.Appsetting<CurrentDbType>("DataBaseType");
             BaseSystemInfo.NewUserRegister = ConfigurationManagerd.Appsetting<bool>("NewUserRegister");
             BaseSystemInfo.UserOnLineLock = ConfigurationManagerd.Appsetting<bool>("UserOnLineLock");
             BaseSystemInfo.NeedRegister = ConfigurationManagerd.Appsetting<bool>("NeedRegister",true);

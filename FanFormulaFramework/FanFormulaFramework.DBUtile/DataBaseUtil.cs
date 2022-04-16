@@ -365,7 +365,7 @@ namespace FanFormulaFramework.DBUtile
         }
 
         /// <summary>
-        /// Oracle实体转更改语句
+        /// SQLite实体转更改语句
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="item"></param>

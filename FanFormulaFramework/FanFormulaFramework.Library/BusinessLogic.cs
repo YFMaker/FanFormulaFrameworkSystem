@@ -93,9 +93,9 @@ namespace FanFormulaFramework.Library
             return "";
         }
 
-        public static string ConverToSQL<T>(T targetValue,string TableName, MakeType type = MakeType.Inster, Dictionary<string, object> update = null, Dictionary<string, object> wheredate = null)
+        public static string ConverToSQL<T>(T targetValue,string TableName, MakeType type = MakeType.Inster, Dictionary<string, object> wheredate = null)
         {
-            string sql = DataUtilLibrary.MakeSqlstring<T>(targetValue, type, update, wheredate);
+            string sql = DataUtilLibrary.MakeSqlstring<T>(targetValue, type, wheredate);
             string entityname = typeof(T).Name;
             sql=sql.Replace(entityname, TableName);
             return sql;

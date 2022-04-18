@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace FanFormulaFramework.Library
 {
@@ -88,9 +89,34 @@ namespace FanFormulaFramework.Library
         }
        
 
-        public static string ConverToSQL(object targetValue)
+        public static string ConverToSQL(string TableName,List<string> selectvalue,Dictionary<string,object> whereDate=null)
         {
-            return "";
+            StringBuilder sqlstring = new StringBuilder();
+            sqlstring.Append("select ");
+            foreach (var item in selectvalue)
+            {
+                sqlstring.AppendFormat("{0},", item);
+            }
+            sqlstring.Remove(sqlstring.Length - 1, 1);
+            sqlstring.AppendFormat(" from {0}", TableName);
+            if (whereDate != null)
+            {
+                sqlstring.Append(" where 1=1");
+                foreach (var item in whereDate.Keys)
+                {
+                    string sqlwhere = string.Empty;
+                    if (whereDate[item].GetType().Name == "string")
+                    {
+                        sqlwhere = string.Format(" and {0}='{1}'", item, whereDate[item].ToString());
+                    }
+                    else if (whereDate[item].GetType().Name == "int")
+                    {
+                        sqlwhere = string.Format(" and {0}={1}", item, whereDate[item].ToString());
+                    }
+                    sqlstring.Append(sqlwhere);
+                }
+            }
+            return sqlstring.ToString();
         }
 
         public static string ConverToSQL<T>(T targetValue,string TableName, MakeType type = MakeType.Inster, Dictionary<string, object> wheredate = null)

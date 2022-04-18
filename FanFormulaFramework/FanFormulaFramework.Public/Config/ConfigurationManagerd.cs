@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Text;
 
@@ -53,12 +54,21 @@ namespace FanFormulaFramework.Public
                     throw new Exception("没有找到配置文件");
                 }
             }
+            if (BaseSystemInfo.BaseConfig == "App.config"&& _path!= "App.config")
+            {
+                _basepath = System.IO.Directory.GetCurrentDirectory();
+            }
+            if (_path == "App.config")
+            {
 
-
-            Configuration = new ConfigurationBuilder()
-                .SetBasePath(_basepath)
-               .Add(new JsonConfigurationSource { Path = _path, Optional = false, ReloadOnChange = true })
-               .Build();
+            }
+            else
+            {
+                Configuration = new ConfigurationBuilder()
+                    .SetBasePath(_basepath)
+                   .Add(new JsonConfigurationSource { Path = _path, Optional = false, ReloadOnChange = true })
+                   .Build();
+            }
         }
 
 
@@ -83,7 +93,19 @@ namespace FanFormulaFramework.Public
             }
         }
 
-
+        public static string Appsetting(string key,string defaultVal)
+        {
+            try
+            {
+                return ConfigurationManager.AppSettings[key];
+            }
+            catch (Exception ex)
+            {
+                ILoger loger = new ILoger();
+                loger.Warning(ex.Message);
+                return defaultVal;
+            }
+        }
 
         /// <summary>
         /// 读取配置信息

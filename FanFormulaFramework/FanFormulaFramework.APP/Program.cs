@@ -1,5 +1,7 @@
+using FanFormulaFramework.Public;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +16,8 @@ namespace FanFormulaFramework.APP
         [STAThread]
         static void Main()
         {
+            BaseSystemInfo.BaseConfig = "App.config";
+            BaseConfiguration.GetConfig();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

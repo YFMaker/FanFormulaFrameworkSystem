@@ -25,6 +25,11 @@ namespace FanFormulaFramework.Public
         public static int CookieExpires = 30;
 
         /// <summary>
+        /// 系统配置文件
+        /// </summary>
+        public static string BaseConfig = "appsettings.json";
+
+        /// <summary>
         /// 配置文件
         /// </summary>
         public static string ConfigFile = "config.json";

@@ -1,0 +1,20 @@
+{
+  //================== 一、客户端配置项 ==================//
+  //= 当前登录用户名 =//
+  "CurrentUserName": "Administrator",
+  //= 当前登录用户密码 =//
+  "CurrentPassWord": "",
+  //= 客户端加密存储登录密码 =//
+  "ClientEncryptionPassWord": "True",
+  //= 是否记住登录密码 =//
+  "RemendPassWord": "True",
+  //= 是否可以自动登录 =//
+  "AutoLogOn": "True",
+  //= 是否动态加载 =//
+  "OrganizeDynamicLoading": "True",
+  //= 是否多语言（基本多语言支持需要填写对应的配置文件） =//
+  "Multilingual": "True"
+
+
+
+}

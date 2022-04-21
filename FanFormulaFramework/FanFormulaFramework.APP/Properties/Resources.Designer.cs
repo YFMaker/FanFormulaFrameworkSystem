@@ -69,15 +69,5 @@ namespace FanFormulaFramework.APP.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap LOGON_Phote {
-            get {
-                object obj = ResourceManager.GetObject("LOGON-Phote", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

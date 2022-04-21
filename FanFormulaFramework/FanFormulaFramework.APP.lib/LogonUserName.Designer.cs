@@ -1,7 +1,7 @@
 ﻿
 namespace FanFormulaFramework.APP.ControlLibaray
 {
-    partial class LogonPictureBox
+    partial class LogonUserName
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,8 +29,16 @@ namespace FanFormulaFramework.APP.ControlLibaray
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // LogonUserName
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "LogonUserName";
+            this.Size = new System.Drawing.Size(383, 41);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

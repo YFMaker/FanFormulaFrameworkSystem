@@ -10,29 +10,16 @@ using System.Windows.Forms;
 
 namespace FanFormulaFramework.APP.ControlLibaray
 {
-    public partial class LogonUserName : UserControl
+    public partial class LogonPassWord : UserControl
     {
-        public LogonUserName()
+        public LogonPassWord()
         {
             InitializeComponent();
-            this.transTextbox1.GotFocus += TransTextbox1_GotFocus;
         }
 
-        private void TransTextbox1_GotFocus(object sender, EventArgs e)
-        {
-            if (transTextbox1.Text == "请输入账户")
-            {
-                transTextbox1.SelectAll();
-            }
-        }
-
-        private void LogonUserName_Click(object sender, EventArgs e)
-        {
-            this.transTextbox1.Focus();
-        }
 
         [Description("编辑内容"), Category("自定义属性")]
-        public string TextValue
+        public string PasswordValue
         {
             get
             {
@@ -42,6 +29,11 @@ namespace FanFormulaFramework.APP.ControlLibaray
             {
                 transTextbox1.Text = value;
             }
+        }
+
+        private void LogonPassWord_Click(object sender, EventArgs e)
+        {
+            this.transTextbox1.Focus();
         }
     }
 }

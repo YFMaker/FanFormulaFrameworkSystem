@@ -1,7 +1,7 @@
 ﻿
 namespace FanFormulaFramework.APP.ControlLibaray
 {
-    partial class LogonUserName
+    partial class LogonButtonNoClick
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,40 +29,43 @@ namespace FanFormulaFramework.APP.ControlLibaray
         /// </summary>
         private void InitializeComponent()
         {
-            this.transTextbox1 = new FanFormulaFramework.APP.ControlLibaray.TransRichTextbox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // transTextbox1
+            // label1
             // 
-            this.transTextbox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.transTextbox1.Font = new System.Drawing.Font("华文行楷", 15.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.transTextbox1.ForeColor = System.Drawing.Color.Teal;
-            this.transTextbox1.Location = new System.Drawing.Point(49, 12);
-            this.transTextbox1.Multiline = false;
-            this.transTextbox1.Name = "transTextbox1";
-            this.transTextbox1.Size = new System.Drawing.Size(195, 26);
-            this.transTextbox1.TabIndex = 0;
-            this.transTextbox1.Text = "请输入账户";
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("华文行楷", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(90, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 33);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "取 消";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // LogonUserName
+            // LogonButtonNoClick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::FanFormulaFramework.APP.ControlLibaray.Properties.Resources.LOGON_UserName;
+            this.BackgroundImage = global::FanFormulaFramework.APP.ControlLibaray.Properties.Resources.LOGON_nobutton;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Controls.Add(this.transTextbox1);
-            this.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
-            this.Name = "LogonUserName";
+            this.Name = "LogonButtonNoClick";
             this.Size = new System.Drawing.Size(270, 50);
-            this.Click += new System.EventHandler(this.LogonUserName_Click);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private TransRichTextbox transTextbox1;
+        private System.Windows.Forms.Label label1;
     }
 }

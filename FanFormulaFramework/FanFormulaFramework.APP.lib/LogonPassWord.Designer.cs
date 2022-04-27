@@ -1,7 +1,7 @@
 ﻿
 namespace FanFormulaFramework.APP.ControlLibaray
 {
-    partial class LogonUserName
+    partial class LogonPassWord
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,40 +29,39 @@ namespace FanFormulaFramework.APP.ControlLibaray
         /// </summary>
         private void InitializeComponent()
         {
-            this.transTextbox1 = new FanFormulaFramework.APP.ControlLibaray.TransRichTextbox();
+            this.transTextbox1 = new FanFormulaFramework.APP.ControlLibaray.TransTextbox();
             this.SuspendLayout();
             // 
             // transTextbox1
             // 
             this.transTextbox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.transTextbox1.Font = new System.Drawing.Font("华文行楷", 15.7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.transTextbox1.ForeColor = System.Drawing.Color.Teal;
-            this.transTextbox1.Location = new System.Drawing.Point(49, 12);
-            this.transTextbox1.Multiline = false;
+            this.transTextbox1.Font = new System.Drawing.Font("华文行楷", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.transTextbox1.Location = new System.Drawing.Point(53, 13);
             this.transTextbox1.Name = "transTextbox1";
-            this.transTextbox1.Size = new System.Drawing.Size(195, 26);
+            this.transTextbox1.PasswordChar = '*';
+            this.transTextbox1.Size = new System.Drawing.Size(182, 23);
             this.transTextbox1.TabIndex = 0;
-            this.transTextbox1.Text = "请输入账户";
             // 
-            // LogonUserName
+            // LogonPassWord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.BackgroundImage = global::FanFormulaFramework.APP.ControlLibaray.Properties.Resources.LOGON_UserName;
+            this.BackgroundImage = global::FanFormulaFramework.APP.ControlLibaray.Properties.Resources.LOGON_PassWord;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Controls.Add(this.transTextbox1);
             this.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.DoubleBuffered = true;
-            this.Name = "LogonUserName";
+            this.Name = "LogonPassWord";
             this.Size = new System.Drawing.Size(270, 50);
-            this.Click += new System.EventHandler(this.LogonUserName_Click);
+            this.Click += new System.EventHandler(this.LogonPassWord_Click);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private TransRichTextbox transTextbox1;
+        private TransTextbox transTextbox1;
     }
 }

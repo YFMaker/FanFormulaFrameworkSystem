@@ -16,5 +16,15 @@ namespace FanFormulaFramework.APP
         {
             InitializeComponent();
         }
+
+        private void btn_logon_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_close_ButtonClick(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

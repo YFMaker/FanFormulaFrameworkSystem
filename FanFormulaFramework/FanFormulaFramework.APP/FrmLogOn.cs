@@ -24,6 +24,7 @@ namespace FanFormulaFramework.APP
 
         private void btn_close_ButtonClick(object sender, EventArgs e)
         {
+
             this.Close();
         }
     }
